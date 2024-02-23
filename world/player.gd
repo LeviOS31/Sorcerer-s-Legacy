@@ -10,6 +10,13 @@ var jump_pressed_time = 0.0
 var max_jump_time = 0.4
 var is_jumping = false
 
+onready var panimation = $AnimationPlayer
+onready var animation = $AnimationTree
+onready var anistate =  animation.get("parameters/playback")
+
+func _ready():
+	animation.active = true
+
 func get_input():
 	velocity.x = 0
 	if Input.is_action_pressed("walk_right"):
