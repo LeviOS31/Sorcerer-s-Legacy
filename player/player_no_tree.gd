@@ -46,7 +46,7 @@ func Move():
 	else:
 		is_jumping = false
 		
-	if velocity.x == 0:
+	if velocity.x == 0 && is_on_floor():
 		panimation.play("idle_right")
 	else:
 		if running:
@@ -63,3 +63,11 @@ func _physics_process(delta):
 	velocity.y += Gravity * delta
 	velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
 	velocity = move_and_slide(velocity, Vector2.UP, true)
+
+func _process(delta):
+	if Input.is_action_just_pressed("attack"):
+		Attack()
+		
+
+func Attack():
+	panimation.play("attack_right")
