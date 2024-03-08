@@ -238,7 +238,7 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 3
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 22 )
@@ -258,3 +258,5 @@ tree_root = SubResource( 80 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 81 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
