@@ -1,17 +1,24 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Assets/Player Characters/player-sheet.png" type="Texture" id=1]
-[ext_resource path="res://player/player_tree.gd" type="Script" id=2]
+[ext_resource path="res://player/player_movement_2.gd" type="Script" id=2]
+[ext_resource path="res://general purpose/hurtbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://general purpose/hitbox.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CapsuleShape2D" id=22]
-radius = 7.0
-height = 12.0
+[sub_resource type="CapsuleShape2D" id=111]
+radius = 6.0
+height = 10.0
+
+[sub_resource type="RectangleShape2D" id=112]
+extents = Vector2( 7, 14 )
+
+[sub_resource type="RectangleShape2D" id=110]
+extents = Vector2( 6, 13.5 )
 
 [sub_resource type="Animation" id=53]
 resource_name = "attack"
-length = 0.9
-loop = true
-step = 0.05
+length = 0.33
+step = 0.005
 tracks/0/type = "value"
 tracks/0/path = NodePath("playersprite:frame")
 tracks/0/interp = 1
@@ -19,10 +26,36 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.11, 0.215, 0.33 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 45, 46, 47, 48, 49, 27 ]
+"values": [ 47, 48, 49, 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("playersprite/hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.005, 0.315, 0.33 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.33 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack_finished"
+} ]
 }
 
 [sub_resource type="Animation" id=54]
@@ -168,6 +201,7 @@ animation = "run"
 animation = "walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=88]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=89]
 
@@ -178,14 +212,17 @@ animation = "walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id=92]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=93]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=94]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=95]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=96]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=97]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=98]
 
@@ -226,7 +263,7 @@ states/walk/node = SubResource( 87 )
 states/walk/position = Vector2( 977, 124 )
 transitions = [ "jump", "fall", SubResource( 88 ), "idle", "jump", SubResource( 89 ), "walk", "jump", SubResource( 90 ), "run", "jump", SubResource( 91 ), "idle", "attack", SubResource( 92 ), "attack", "idle", SubResource( 93 ), "walk", "attack", SubResource( 94 ), "attack", "walk", SubResource( 95 ), "run", "attack", SubResource( 96 ), "attack", "run", SubResource( 97 ), "run", "fall", SubResource( 98 ), "fall", "run", SubResource( 99 ), "walk", "fall", SubResource( 100 ), "fall", "walk", SubResource( 101 ), "idle", "fall", SubResource( 102 ), "fall", "idle", SubResource( 103 ), "attack", "fall", SubResource( 104 ), "fall", "attack", SubResource( 105 ), "idle", "walk", SubResource( 106 ), "walk", "idle", SubResource( 107 ), "walk", "run", SubResource( 108 ), "run", "walk", SubResource( 109 ) ]
 start_node = "idle"
-graph_offset = Vector2( 366.189, 77.6401 )
+graph_offset = Vector2( 366.189, -65.3279 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=81]
 
@@ -238,10 +275,25 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 3
+frame = 1
+
+[node name="hitbox" parent="playersprite" instance=ExtResource( 4 )]
+position = Vector2( 1, 0 )
+
+[node name="CollisionShape2D" parent="playersprite/hitbox" index="0"]
+position = Vector2( 13, 8 )
+shape = SubResource( 111 )
+disabled = true
+
+[node name="hurtbox" parent="playersprite" instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="playersprite/hurtbox" index="0"]
+position = Vector2( 0, 8 )
+shape = SubResource( 112 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 22 )
+position = Vector2( 1, -0.5 )
+shape = SubResource( 110 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 53 )
@@ -258,3 +310,6 @@ tree_root = SubResource( 80 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 81 )
+
+[editable path="playersprite/hitbox"]
+[editable path="playersprite/hurtbox"]
