@@ -51,7 +51,7 @@ radius = 9.0
 radius = 9.0
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 90.0
+radius = 161.003
 
 [node name="bat" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -89,6 +89,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection area"]
 shape = SubResource( 6 )
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="hit" from="hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="body_entered" from="detection area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection area" to="." method="_on_detection_area_body_exited"]

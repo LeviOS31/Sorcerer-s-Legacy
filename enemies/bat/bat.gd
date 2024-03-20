@@ -50,6 +50,11 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(direction * Speed, ACCL * delta)
 	
 	velocity = move_and_slide(velocity)
+	if velocity.x != 0:
+		if velocity.x < 0:
+			$Sprite.scale = Vector2(-1,1)
+		elif velocity.x > 0:
+			$Sprite.scale = Vector2(1,1)
 
 
 func pick_state(state_list):
@@ -71,5 +76,11 @@ func _on_detection_area_body_exited(body):
 		wandercontroller.start_timer(rand_range(1,3))
 
 
-func _on_hurtbox_hit():
+func _on_hurtbox_hit(enemy):
 	$AnimationPlayer.play("hit")
+	var knockbackdirection = (global_position - enemy.global_position).normalized()
+	velocity = velocity + (knockbackdirection * Global.knockbackspeed / 2)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	$AnimationPlayer.play("animation")
