@@ -1,8 +1,57 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://enemies/bat/bat.gd" type="Script" id=1]
 [ext_resource path="res://enemies/wandercontroller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Enemies/bat/bat.png" type="Texture" id=3]
+[ext_resource path="res://general purpose/hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://general purpose/hitbox.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "animation"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "hit"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.733333, 0.219608, 0.219608, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 90.0
 
 [node name="bat" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -14,5 +63,35 @@ hframes = 2
 [node name="wandercontroller" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "animation"
+anims/animation = SubResource( 1 )
+anims/hit = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="hitbox" parent="." instance=ExtResource( 5 )]
+
+[node name="CollisionShape2D" parent="hitbox" index="0"]
+shape = SubResource( 4 )
+
+[node name="hurtbox" parent="." instance=ExtResource( 4 )]
+collision_mask = 16384
+parent = NodePath("..")
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+shape = SubResource( 5 )
+
+[node name="detection area" type="Area2D" parent="."]
+collision_layer = 8192
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection area"]
+shape = SubResource( 6 )
+
+[connection signal="hit" from="hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="body_entered" from="detection area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection area" to="." method="_on_detection_area_body_exited"]
+
+[editable path="hitbox"]
+[editable path="hurtbox"]

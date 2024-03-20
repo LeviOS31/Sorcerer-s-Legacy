@@ -61,17 +61,16 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=54]
 resource_name = "damage"
 length = 0.3
-loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("playersprite:modulate")
+tracks/0/path = NodePath("playersprite:self_modulate")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1.07177, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.733333, 0.219608, 0.219608, 1 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -269,16 +268,19 @@ graph_offset = Vector2( 366.189, -65.3279 )
 
 [node name="player" type="KinematicBody2D"]
 position = Vector2( 120, 14 )
+collision_mask = 8193
 script = ExtResource( 2 )
 
 [node name="playersprite" type="Sprite" parent="."]
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 1
+frame = 3
 
 [node name="hitbox" parent="playersprite" instance=ExtResource( 4 )]
 position = Vector2( 1, 0 )
+collision_layer = 16384
+damage = 1
 
 [node name="CollisionShape2D" parent="playersprite/hitbox" index="0"]
 position = Vector2( 13, 8 )
@@ -286,6 +288,7 @@ shape = SubResource( 111 )
 disabled = true
 
 [node name="hurtbox" parent="playersprite" instance=ExtResource( 3 )]
+parent = NodePath("../..")
 
 [node name="CollisionShape2D" parent="playersprite/hurtbox" index="0"]
 position = Vector2( 0, 8 )
