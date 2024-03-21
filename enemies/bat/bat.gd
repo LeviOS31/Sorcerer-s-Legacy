@@ -6,10 +6,10 @@ enum{
 	CHASE,
 }
 
-export var health = 2
-export var Friction = 1000
-export var ACCL = 200
-export var Speed = 190
+export (int) var health = 2
+export (int) var Friction = 1000
+export (int) var ACCL = 200
+export (int) var Speed = 190
 
 onready var velocity = Vector2.ZERO
 onready var State = WANDER

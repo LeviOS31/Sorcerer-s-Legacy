@@ -23,9 +23,15 @@ func _physics_process(delta):
 	move(delta)
 	
 
-func _input(event):
-	if event.is_action_pressed("attack"):
-		attack();
+func _process(_delta):
+	if Input.get_action_strength("attack") > 0:
+		is_attacking = true
+	else:
+		is_attacking = false
+
+#func _input(event):
+#	if event.is_action_pressed("attack"):
+#		attack();
 
 func move(delta):
 	if(!is_attacking):

@@ -17,8 +17,8 @@ extents = Vector2( 6, 13.5 )
 
 [sub_resource type="Animation" id=53]
 resource_name = "attack"
-length = 0.33
-step = 0.005
+length = 0.4
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("playersprite:frame")
 tracks/0/interp = 1
@@ -26,36 +26,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.11, 0.215, 0.325 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 49, 48, 47, 49 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("playersprite/hitbox/CollisionShape2D:disabled")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.005, 0.315, 0.33 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.33 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "attack_finished"
-} ]
+"values": [ 52, 53 ]
 }
 
 [sub_resource type="Animation" id=54]
@@ -275,7 +249,7 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 5
+frame = 1
 
 [node name="hitbox" parent="playersprite" instance=ExtResource( 4 )]
 position = Vector2( 1, 0 )
@@ -286,7 +260,6 @@ damage = 1
 position = Vector2( 31, 8 )
 rotation = 1.57079
 shape = SubResource( 111 )
-disabled = true
 
 [node name="hurtbox" parent="playersprite" instance=ExtResource( 3 )]
 parent = NodePath("../..")
