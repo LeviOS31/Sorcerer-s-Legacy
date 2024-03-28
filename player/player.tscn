@@ -227,7 +227,7 @@ states/attack/position = Vector2( 1126, 20 )
 states/fall/node = SubResource( 83 )
 states/fall/position = Vector2( 1126, 299.864 )
 states/idle/node = SubResource( 84 )
-states/idle/position = Vector2( 716, 124 )
+states/idle/position = Vector2( 717, 124 )
 states/jump/node = SubResource( 85 )
 states/jump/position = Vector2( 870.576, 299.864 )
 states/run/node = SubResource( 86 )
@@ -287,6 +287,8 @@ tree_root = SubResource( 80 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 81 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
 [connection signal="hit" from="playersprite/hurtbox" to="." method="_on_hurtbox_hit"]
 

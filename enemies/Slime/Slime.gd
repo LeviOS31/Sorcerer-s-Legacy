@@ -21,7 +21,7 @@ onready var hit = false
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		death()
 
@@ -48,12 +48,12 @@ func _on_hurtbox_hit(enemy):
 	var knockbackdirection = (global_position - enemy.global_position).normalized()
 	velocity = velocity + (knockbackdirection * Global.knockbackspeed / 2)
 
-func _on_left_body_exited(body):
+func _on_left_body_exited(_body):
 	direction = Vector2.RIGHT
 	$Timer.start(0.5)
 	state = IDLE
 
-func _on_right_body_exited(body):
+func _on_right_body_exited(_body):
 	direction = Vector2.LEFT
 	$Timer.start(0.5)
 	state = IDLE
