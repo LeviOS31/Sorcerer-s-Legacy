@@ -280,7 +280,21 @@ margin_top = 451.0
 margin_right = -49.0
 margin_bottom = 1376.0
 rect_rotation = 180.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="Trasitiongradient2" type="Sprite" parent="."]
+position = Vector2( 1060, -38.5343 )
+rotation = 6.28318
+scale = Vector2( 7.1, 4.62465 )
+texture = ExtResource( 3 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 1141.0
+margin_top = -504.0
+margin_right = 1181.0
+margin_bottom = 421.0
+rect_rotation = 359.999
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
 [connection signal="body_entered" from="nextrooms/room3" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room3" ]]
 [connection signal="body_entered" from="nextrooms/room1" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room1" ]]

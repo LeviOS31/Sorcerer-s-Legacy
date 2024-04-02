@@ -71,6 +71,7 @@ anims/hit = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="hitbox" parent="." instance=ExtResource( 5 )]
+attacktype = "normal"
 
 [node name="CollisionShape2D" parent="hitbox" index="0"]
 shape = SubResource( 4 )

@@ -16,6 +16,7 @@ onready var direction = Vector2.LEFT
 onready var animation = $AnimationPlayer
 onready var sprite = $Sprite
 onready var hit = false
+onready var death = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +27,7 @@ func _process(_delta):
 		death()
 
 func _physics_process(delta):
-	if !hit:
+	if !hit && !death:
 		match state:
 			WANDER:
 				velocity = velocity.move_toward(direction * speed, ACCL * delta)
@@ -66,7 +67,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		hit = false
 
 func death():
-	hit = true
-	animation.play("die")
-	yield(animation, "animation_finished")
-	queue_free()
+	if !death:
+		death = true
+		#pause_mode = Node.PAUSE_MODE_STOP
+		animation.play("die")
+		yield(animation, "animation_finished")
+		queue_free()

@@ -121,6 +121,7 @@ position = Vector2( 16, 13 )
 shape = SubResource( 8 )
 
 [node name="hitbox" parent="." instance=ExtResource( 4 )]
+attacktype = "normal"
 
 [node name="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2( 0, 4 )

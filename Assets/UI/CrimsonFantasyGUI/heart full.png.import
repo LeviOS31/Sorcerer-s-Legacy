@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blood.png-153521af494a3193ed1416df065dccd1.stex"
+path="res://.import/heart full.png-b6adcf169b5fcbac5bdd9420bfb0188b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Particles/blood.png"
-dest_files=[ "res://.import/blood.png-153521af494a3193ed1416df065dccd1.stex" ]
+source_file="res://Assets/UI/CrimsonFantasyGUI/heart full.png"
+dest_files=[ "res://.import/heart full.png-b6adcf169b5fcbac5bdd9420bfb0188b.stex" ]
 
 [params]
 

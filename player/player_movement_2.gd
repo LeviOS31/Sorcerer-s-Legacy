@@ -26,8 +26,12 @@ func _physics_process(delta):
 func _process(_delta):
 	if Input.get_action_strength("attack") > 0:
 		is_attacking = true
+		attack()
 	else:
+		if is_attacking == true:
+			attack_finished()
 		is_attacking = false
+		
 
 #func _input(event):
 #	if event.is_action_pressed("attack"):
@@ -75,14 +79,13 @@ func move(delta):
 
 func attack():
 	anistate.travel("attack")
-
-	is_attacking = true
-	yield(panimation, "animation_finished")
-	is_attacking = false
+	$playersprite/hitbox.attacktype = "ongoing"
+	$playersprite/hitbox/CollisionShape2D.disabled = false
 
 func attack_finished():
-	is_attacking = false
-
+	$playersprite/hitbox/CollisionShape2D.disabled = true
+	$playersprite/hitbox.attacktype = ""
+	$playersprite/Particles2D.emitting = false
 
 func _on_hurtbox_hit(enemy):
 	panimation.play("damage")
