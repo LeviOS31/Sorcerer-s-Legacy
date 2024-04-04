@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Position2D",
+"class": "LightSource",
+"language": "GDScript",
+"path": "res://general purpose/LightSource.gd"
+} ]
+_global_script_class_icons={
+"LightSource": ""
+}
+
 [application]
 
 config/name="Blue mage Revenge"

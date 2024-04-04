@@ -44,10 +44,11 @@ func _physics_process(delta):
 				$Sprite.scale = Vector2(-1,1)
 
 func _on_hurtbox_hit(enemy):
-	animation.play("hit")
-	hit = true
-	var knockbackdirection = (global_position - enemy.global_position).normalized()
-	velocity = velocity + (knockbackdirection * Global.knockbackspeed / 2)
+	if !death:
+		animation.play("hit")
+		hit = true
+		var knockbackdirection = (global_position - enemy.global_position).normalized()
+		velocity = velocity + (knockbackdirection * Global.knockbackspeed / 2)
 
 func _on_left_body_exited(_body):
 	direction = Vector2.RIGHT
