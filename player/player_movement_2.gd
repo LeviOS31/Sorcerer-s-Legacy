@@ -8,7 +8,7 @@ export (int) var Friction = 1900
 var health
 var velocity = Vector2.ZERO
 var jump_pressed_time = 0.0
-var max_jump_time = 0.20
+var max_jump_time = 0.30
 var is_jumping = false
 export var is_attacking = false
 
@@ -61,9 +61,10 @@ func move(delta):
 			jump_pressed_time += delta
 		
 		
-		if velocity.y < 0:
+		if velocity.y < 0 and !is_on_floor():
+			print(is_on_floor())
 			anistate.travel("jump")
-		elif velocity.y > 0:
+		elif velocity.y > 0 and !is_on_floor():
 			anistate.travel("fall")
 		elif velocity.x != 0:
 			anistate.travel("run")

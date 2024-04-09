@@ -113,16 +113,13 @@ player = NodePath("player")
 position = Vector2( 23, 184 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 0
+frame = 2
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
 
 [node name="RemoteTransform2D" parent="player" index="4"]
 remote_path = NodePath("../../Camera")
-
-[node name="Position2D" parent="player" index="5"]
-color = Color( 1, 0.85098, 0.658824, 1 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 23, 184 )
@@ -139,7 +136,6 @@ position = Vector2( 1629, -20 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
