@@ -9,6 +9,7 @@ export (int) var health = 2
 export (int) var speed = 50
 export (int) var ACCL = 200
 export (int) var Friction = 4000
+export (int) var Gravity = 1000
 
 onready var velocity = Vector2.ZERO
 onready var state = WANDER
@@ -36,6 +37,7 @@ func _physics_process(delta):
 				velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
 				animation.play("idle")
 				
+		velocity.y += Gravity
 		velocity = move_and_slide(velocity)
 		if velocity.x != 0:
 			if velocity.x < 0:
