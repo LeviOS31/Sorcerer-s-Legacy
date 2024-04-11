@@ -59,10 +59,11 @@ func move(delta):
 		if Input.is_action_pressed("jump") and is_jumping and jump_pressed_time < max_jump_time:
 			velocity.y = Jump_speed
 			jump_pressed_time += delta
+		if Input.is_action_just_released("jump"):
+			is_jumping = false
 		
 		
 		if velocity.y < 0 and !is_on_floor():
-			print(is_on_floor())
 			anistate.travel("jump")
 		elif velocity.y > 0 and !is_on_floor():
 			anistate.travel("fall")
@@ -76,7 +77,11 @@ func move(delta):
 		
 	velocity.y += Gravity * delta
 	velocity.y = clamp(velocity.y, -100000, 1500)
-	velocity = move_and_slide(velocity, Vector2.UP, true)
+	if is_jumping:
+		velocity = move_and_slide(velocity ,Vector2.UP, true)
+	else:
+		velocity = move_and_slide_with_snap(velocity, Vector2(0,10) ,Vector2.UP, true)
+	
 
 func attack():
 	anistate.travel("attack")
@@ -87,6 +92,9 @@ func attack_finished():
 	$playersprite/hitbox/CollisionShape2D.disabled = true
 	$playersprite/hitbox.attacktype = ""
 	$playersprite/Particles2D.emitting = false
+	yield(get_tree().create_timer(0.1), "timeout")
+	$playersprite/hurtbox/Position2D.strength = 0
+	$playersprite/hurtbox/Position2D2.strength = 0
 
 func _on_hurtbox_hit(enemy):
 	panimation.play("damage")

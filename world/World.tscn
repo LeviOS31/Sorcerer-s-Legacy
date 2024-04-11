@@ -95,8 +95,8 @@ void fragment() {
 shader = SubResource( 2 )
 shader_param/global_transform = null
 shader_param/n_lights = 0
-shader_param/dark_color = Color( 0.027451, 0.00392157, 0.129412, 0.827451 )
-shader_param/default_light_color = null
+shader_param/dark_color = Color( 0.137255, 0.105882, 0.270588, 0.827451 )
+shader_param/default_light_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 shader_param/light_level = 0.0
 shader_param/offset_modifier = 1.0
 shader_param/n_light_bands = 7
@@ -113,7 +113,7 @@ player = NodePath("player")
 position = Vector2( 23, 184 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 0
+frame = 3
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )

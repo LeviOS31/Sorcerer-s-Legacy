@@ -62,6 +62,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("playersprite/hurtbox/Position2D2:strength")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("playersprite/hurtbox/Position2D:strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.25, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
 
 [sub_resource type="Animation" id=54]
 resource_name = "damage"
@@ -277,7 +301,6 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 1
 
 [node name="Particles2D" type="Particles2D" parent="playersprite"]
 position = Vector2( 22, 6 )
@@ -305,6 +328,16 @@ parent = NodePath("../..")
 [node name="CollisionShape2D" parent="playersprite/hurtbox" index="0"]
 position = Vector2( 0, 8 )
 shape = SubResource( 112 )
+
+[node name="Position2D2" parent="playersprite/hurtbox" instance=ExtResource( 6 )]
+position = Vector2( 20, 9 )
+color = Color( 1, 0.85098, 0.658824, 1 )
+strength = 0.0
+
+[node name="Position2D" parent="playersprite/hurtbox" instance=ExtResource( 6 )]
+position = Vector2( 39, 9 )
+color = Color( 1, 0.85098, 0.658824, 1 )
+strength = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -0.5 )
