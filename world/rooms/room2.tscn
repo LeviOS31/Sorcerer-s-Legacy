@@ -1022,6 +1022,7 @@ tile_data = PoolIntArray( -524287, -1610612735, 131072, -524286, -1610612735, 65
 position = Vector2( 64, 151 )
 z_index = 2
 frames = SubResource( 55 )
+frame = 3
 playing = true
 
 [node name="Lightsource" parent="Background/torch" instance=ExtResource( 5 )]
