@@ -47,3 +47,6 @@ func transition():
 		camera.limit_right = currentroomnode.get_node("cameracontraints/bottomright").global_position.x
 		camera.limit_bottom = currentroomnode.get_node("cameracontraints/bottomright").global_position.y
 		
+
+func playscene(scene):
+	get_node(currentroom).get_node("scene/AnimationPlayer").play(scene)

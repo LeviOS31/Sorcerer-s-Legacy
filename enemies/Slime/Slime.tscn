@@ -130,7 +130,6 @@ rotation = 1.57079
 shape = SubResource( 6 )
 
 [node name="hurtbox" parent="." instance=ExtResource( 3 )]
-visible = false
 collision_mask = 16384
 parent = NodePath("..")
 

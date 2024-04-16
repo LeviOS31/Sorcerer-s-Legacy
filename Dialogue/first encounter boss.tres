@@ -1,0 +1,130 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 10
+syntax_version = 2
+raw_text = "~ first_boss_encounter
+set is_in_dialogue = true
+Evil wizard: Welkom to my castle lost one.
+Evil wizard: I hope you make it to the top.
+do playscene(\"boss_leaving\")
+Evil wizard: MUHAHAHAHAHAHA!
+do wait(0.6)
+Blue mage: come back here you monster!
+set is_in_dialogue = false
+=> END
+"
+errors = [  ]
+titles = {
+"first_boss_encounter": "1"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "first_boss_encounter",
+"type": "title"
+},
+"1": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "is_in_dialogue"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "2",
+"type": "mutation"
+},
+"2": {
+"character": "Evil wizard",
+"character_replacements": [  ],
+"next_id": "3",
+"replacements": [  ],
+"text": "Welkom to my castle lost one.",
+"translation_key": "Welkom to my castle lost one.",
+"type": "dialogue"
+},
+"3": {
+"character": "Evil wizard",
+"character_replacements": [  ],
+"next_id": "4",
+"replacements": [  ],
+"text": "I hope you make it to the top.",
+"translation_key": "I hope you make it to the top.",
+"type": "dialogue"
+},
+"4": {
+"mutation": {
+"expression": [ {
+"function": "playscene",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "boss_leaving"
+} ] ]
+} ]
+},
+"next_id": "5",
+"type": "mutation"
+},
+"5": {
+"character": "Evil wizard",
+"character_replacements": [  ],
+"next_id": "6",
+"replacements": [  ],
+"text": "MUHAHAHAHAHAHA!",
+"translation_key": "MUHAHAHAHAHAHA!",
+"type": "dialogue"
+},
+"6": {
+"mutation": {
+"expression": [ {
+"function": "wait",
+"type": "function",
+"value": [ [ {
+"type": "number",
+"value": 0.6
+} ] ]
+} ]
+},
+"next_id": "7",
+"type": "mutation"
+},
+"7": {
+"character": "Blue mage",
+"character_replacements": [  ],
+"next_id": "8",
+"replacements": [  ],
+"text": "come back here you monster!",
+"translation_key": "come back here you monster!",
+"type": "dialogue"
+},
+"8": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "is_in_dialogue"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "9",
+"type": "mutation"
+},
+"9": {
+"next_id": "end",
+"type": "goto"
+}
+}
