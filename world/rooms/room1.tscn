@@ -12,7 +12,7 @@
 [ext_resource path="res://general purpose/LightSource.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/World/door.png" type="Texture" id=11]
 [ext_resource path="res://Assets/World/small_door_animation.png" type="Texture" id=12]
-[ext_resource path="res://enemies/EvilWizardboss/Evilwizardboss.tscn" type="PackedScene" id=13]
+[ext_resource path="res://enemies/EvilWizardboss/cutscene/Evilwizardboss_cutscene.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scene's/scene_room1.gd" type="Script" id=14]
 
 [sub_resource type="TileSet" id=47]
@@ -1012,7 +1012,7 @@ tile_data = PoolIntArray( 327732, 4, 0, 327733, 5, 0, 327734, 4, 0, 327735, 5, 0
 position = Vector2( 64, 151 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Lightsource" parent="Background/torch" instance=ExtResource( 10 )]
@@ -1024,7 +1024,7 @@ radius = 32
 position = Vector2( 59, 133 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 2
+frame = 3
 playing = true
 offset = Vector2( 165, 19 )
 
@@ -1037,7 +1037,7 @@ radius = 32
 position = Vector2( 576, 183 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Lightsource" parent="Background/torch3" instance=ExtResource( 10 )]
@@ -1049,7 +1049,7 @@ radius = 32
 position = Vector2( 400, 167 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/torch4" instance=ExtResource( 10 )]
@@ -1061,7 +1061,6 @@ radius = 32
 position = Vector2( 736, 183 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 3
 playing = true
 
 [node name="Lightsource" parent="Background/torch5" instance=ExtResource( 10 )]

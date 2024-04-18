@@ -16,6 +16,15 @@ func _ready():
 
 
 func _on_trigger_body_entered(body):
-	if body.name == "player":
-		DialogueManager.show_example_dialogue_balloon("first_boss_encounter", Dialogue_resource)
-		#var dailogue_line = yield(DialogueManager.get_next_dialogue_line("first_boss_encounter", Dialogue_resource), "completed")
+	if body.name == "player" && !Global.cutscene_1_seen:
+		#DialogueManager.show_example_dialogue_balloon("first_boss_encounter", Dialogue_resource)
+		show_dialogue("first_boss_encounter",Dialogue_resource)
+		
+
+func show_dialogue(title:String, resource: DialogueResource):
+	var dialogue_lines = yield(DialogueManager.get_next_dialogue_line(title, resource), "completed")
+	if dialogue_lines != null:
+		var balloon = preload("res://Dialogue/Dialogue_balloon/balloon.tscn").instance()
+		balloon.dialogue_line = dialogue_lines
+		get_tree().current_scene.add_child(balloon)
+		show_dialogue(yield(balloon, "actioned"), Dialogue_resource)
