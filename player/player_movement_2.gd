@@ -97,6 +97,7 @@ func attack_finished():
 	$playersprite/hurtbox/Position2D2.strength = 0
 
 func _on_hurtbox_hit(enemy):
+	print("hit")
 	panimation.play("damage")
 	var knockbackdirection = (global_position - enemy.global_position).normalized()
 	velocity = velocity + knockbackdirection * Global.knockbackspeed

@@ -1012,7 +1012,7 @@ tile_data = PoolIntArray( 327732, 4, 0, 327733, 5, 0, 327734, 4, 0, 327735, 5, 0
 position = Vector2( 64, 151 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/torch" instance=ExtResource( 10 )]
@@ -1024,7 +1024,7 @@ radius = 32
 position = Vector2( 59, 133 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 3
+frame = 1
 playing = true
 offset = Vector2( 165, 19 )
 
@@ -1037,7 +1037,7 @@ radius = 32
 position = Vector2( 576, 183 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/torch3" instance=ExtResource( 10 )]
@@ -1049,7 +1049,6 @@ radius = 32
 position = Vector2( 400, 167 )
 z_index = 2
 frames = SubResource( 52 )
-frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/torch4" instance=ExtResource( 10 )]
@@ -1061,6 +1060,7 @@ radius = 32
 position = Vector2( 736, 183 )
 z_index = 2
 frames = SubResource( 52 )
+frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/torch5" instance=ExtResource( 10 )]
