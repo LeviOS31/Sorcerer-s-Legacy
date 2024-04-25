@@ -301,7 +301,7 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 3
+frame = 1
 
 [node name="Particles2D" type="Particles2D" parent="playersprite"]
 position = Vector2( 22, 6 )
@@ -315,6 +315,7 @@ texture = ExtResource( 5 )
 position = Vector2( 1, 0 )
 collision_layer = 16384
 damage = 1
+attacktype = "ongoing"
 damage_interval = 1.0
 
 [node name="CollisionShape2D" parent="playersprite/hitbox" index="0"]
@@ -345,6 +346,7 @@ position = Vector2( 1, -0.5 )
 shape = SubResource( 110 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
 anims/attack = SubResource( 53 )
 anims/damage = SubResource( 54 )
 anims/death = SubResource( 55 )
@@ -355,6 +357,7 @@ anims/run = SubResource( 41 )
 anims/walk = SubResource( 24 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+pause_mode = 2
 tree_root = SubResource( 80 )
 anim_player = NodePath("../AnimationPlayer")
 active = true

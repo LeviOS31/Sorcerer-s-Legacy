@@ -65,18 +65,25 @@ custom_constants/margin_bottom = 20
 [node name="HBox" type="HBoxContainer" parent="Balloon/Margin"]
 margin_left = 30.0
 margin_top = 20.0
-margin_right = 34.0
+margin_right = 74.0
 margin_bottom = 489.0
 
-[node name="Portrait" type="Control" parent="Balloon/Margin/HBox"]
+[node name="Portrait" type="VBoxContainer" parent="Balloon/Margin/HBox"]
+margin_left = -20.0
+margin_right = 40.0
 margin_bottom = 469.0
+rect_min_size = Vector2( 30, 40 )
 
-[node name="Sprite" type="Sprite" parent="Balloon/Margin/HBox/Portrait"]
-scale = Vector2( 3, 3 )
+[node name="Sprite" type="TextureRect" parent="Balloon/Margin/HBox/Portrait"]
+margin_right = 60.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+expand = true
+stretch_mode = 6
 
 [node name="VBox" type="VBoxContainer" parent="Balloon/Margin/HBox"]
-margin_left = 4.0
-margin_right = 4.0
+margin_left = 44.0
+margin_right = 44.0
 margin_bottom = 469.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

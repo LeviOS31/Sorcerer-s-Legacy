@@ -26,36 +26,38 @@ func _process(delta):
 		queue_free()
 
 func _physics_process(delta):
-	match State:
-		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
-			
-			if wandercontroller.get_time() == 0:
-				State = pick_state([IDLE, WANDER])
-				wandercontroller.start_timer(rand_range(1,3))
-			
-		WANDER:
-			if wandercontroller.get_time() == 0:
-				State = pick_state([IDLE, WANDER])
-				wandercontroller.start_timer(rand_range(1,3))
+	if !Global.is_in_dialogue:
+		match State:
+			IDLE:
+				velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
 				
-			var direction = global_position.direction_to(wandercontroller.target_position)
-			velocity = velocity.move_toward(direction * Speed, ACCL * delta)
-			
-			if global_position.distance_to(wandercontroller.target_position)  <= Speed * delta:
-				State = pick_state([IDLE, WANDER])
-				wandercontroller.start_timer(rand_range(1,3))
-		CHASE:
-			var direction = global_position.direction_to(player.global_position)
-			velocity = velocity.move_toward(direction * Speed, ACCL * delta)
-	
-	velocity = move_and_slide(velocity)
-	if velocity.x != 0:
-		if velocity.x < 0:
-			$Sprite.scale = Vector2(-1,1)
-		elif velocity.x > 0:
-			$Sprite.scale = Vector2(1,1)
-
+				if wandercontroller.get_time() == 0:
+					State = pick_state([IDLE, WANDER])
+					wandercontroller.start_timer(rand_range(1,3))
+				
+			WANDER:
+				if wandercontroller.get_time() == 0:
+					State = pick_state([IDLE, WANDER])
+					wandercontroller.start_timer(rand_range(1,3))
+					
+				var direction = global_position.direction_to(wandercontroller.target_position)
+				velocity = velocity.move_toward(direction * Speed, ACCL * delta)
+				
+				if global_position.distance_to(wandercontroller.target_position)  <= Speed * delta:
+					State = pick_state([IDLE, WANDER])
+					wandercontroller.start_timer(rand_range(1,3))
+			CHASE:
+				var direction = global_position.direction_to(player.global_position)
+				velocity = velocity.move_toward(direction * Speed, ACCL * delta)
+		
+		velocity = move_and_slide(velocity)
+		if velocity.x != 0:
+			if velocity.x < 0:
+				$Sprite.scale = Vector2(-1,1)
+			elif velocity.x > 0:
+				$Sprite.scale = Vector2(1,1)
+	else:
+		velocity = move_and_slide(Vector2.ZERO)
 
 func pick_state(state_list):
 	state_list.shuffle()

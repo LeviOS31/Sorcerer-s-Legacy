@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var Walk = 120
-export (int) var Jump_speed = -270
+export (int) var Jump_speed = -225
 export (int) var Gravity = 1000
 export (int) var Friction = 1900
 
@@ -24,63 +24,63 @@ func _physics_process(delta):
 	
 
 func _process(_delta):
-	if Input.get_action_strength("attack") > 0:
-		is_attacking = true
-		attack()
-	else:
-		if is_attacking == true:
-			attack_finished()
-		is_attacking = false
-		
-
-#func _input(event):
-#	if event.is_action_pressed("attack"):
-#		attack();
+	if !Global.is_in_dialogue:
+		if Input.get_action_strength("attack") > 0:
+			is_attacking = true
+			attack()
+		else:
+			if is_attacking == true:
+				attack_finished()
+			is_attacking = false
 
 func move(delta):
-	if(!is_attacking):
-		var x = 0
-		
-		x = Input.get_action_strength("walk_right") - Input.get_action_strength("walk_left")
-		
-		if x != 0:
-			if x < 0:
-				$playersprite.scale = Vector2(-1,1)
-			elif x > 0:
-				$playersprite.scale = Vector2(1,1)
-			velocity.x = x * Walk
+	if !Global.is_in_dialogue:
+		if(!is_attacking):
+			var x = 0
 			
+			x = Input.get_action_strength("walk_right") - Input.get_action_strength("walk_left")
+			
+			if x != 0:
+				if x < 0:
+					$playersprite.scale = Vector2(-1,1)
+				elif x > 0:
+					$playersprite.scale = Vector2(1,1)
+				velocity.x = x * Walk
+				
+			else:
+				velocity.x = move_toward(velocity.x, 0, Friction * delta)
+			
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				is_jumping = true
+				jump_pressed_time = 0.0
+			if Input.is_action_pressed("jump") and is_jumping and jump_pressed_time < max_jump_time:
+				velocity.y = Jump_speed
+				jump_pressed_time += delta
+			if Input.is_action_just_released("jump"):
+				is_jumping = false
+			
+			
+			if velocity.y < 0 and !is_on_floor():
+				anistate.travel("jump")
+			elif velocity.y > 0 and !is_on_floor():
+				anistate.travel("fall")
+			elif velocity.x != 0:
+				anistate.travel("run")
+			else:
+				anistate.travel("idle")
+		
+		if is_attacking:
+			velocity.x = move_toward(velocity.x, 0, 200 * delta)
+			
+		velocity.y += Gravity * delta
+		velocity.y = clamp(velocity.y, -100000, 1500)
+		if is_jumping:
+			velocity = move_and_slide(velocity ,Vector2.UP, true)
 		else:
-			velocity.x = move_toward(velocity.x, 0, Friction * delta)
-		
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			is_jumping = true
-			jump_pressed_time = 0.0
-		if Input.is_action_pressed("jump") and is_jumping and jump_pressed_time < max_jump_time:
-			velocity.y = Jump_speed
-			jump_pressed_time += delta
-		if Input.is_action_just_released("jump"):
-			is_jumping = false
-		
-		
-		if velocity.y < 0 and !is_on_floor():
-			anistate.travel("jump")
-		elif velocity.y > 0 and !is_on_floor():
-			anistate.travel("fall")
-		elif velocity.x != 0:
-			anistate.travel("run")
-		else:
-			anistate.travel("idle")
-	
-	if is_attacking:
-		velocity.x = move_toward(velocity.x, 0, 200 * delta)
-		
-	velocity.y += Gravity * delta
-	velocity.y = clamp(velocity.y, -100000, 1500)
-	if is_jumping:
-		velocity = move_and_slide(velocity ,Vector2.UP, true)
+			velocity = move_and_slide_with_snap(velocity, Vector2(0,10) ,Vector2.UP, true)
 	else:
-		velocity = move_and_slide_with_snap(velocity, Vector2(0,10) ,Vector2.UP, true)
+		velocity = move_and_slide(Vector2.ZERO)
+		anistate.travel("idle")
 	
 
 func attack():

@@ -12,7 +12,7 @@ func _ready():
 		$HBoxContainer.add_child(duplicated)
 
 func _process(delta):
-	if player.health < hearts.size():
+	if player.health < hearts.size() and player.health > -1:
 		hearts.back().queue_free()
 		hearts.erase(hearts.back())
 		

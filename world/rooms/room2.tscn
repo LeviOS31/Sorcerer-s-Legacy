@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://world/rooms/nextrooms.gd" type="Script" id=1]
 [ext_resource path="res://world/rooms/room.gd" type="Script" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://world/Deaths.gd" type="Script" id=4]
 [ext_resource path="res://general purpose/LightSource.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/World/Tilesetv3.png" type="Texture" id=6]
-[ext_resource path="res://Assets/World/spr_torch.png" type="Texture" id=7]
+[ext_resource path="res://world/torch.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/World/itemtileset.png" type="Texture" id=8]
 [ext_resource path="res://Assets/World/evelvator.png" type="Texture" id=9]
 [ext_resource path="res://world/rooms/elevator.gd" type="Script" id=10]
+[ext_resource path="res://world/platform.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=52]
 2/name = "Tilesetv3.png 2"
@@ -307,30 +308,6 @@
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
-
-[sub_resource type="AtlasTexture" id=48]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 21, 27 )
-
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 7 )
-region = Rect2( 21, 0, 21, 27 )
-
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 7 )
-region = Rect2( 42, 0, 21, 27 )
-
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 7 )
-region = Rect2( 63, 0, 21, 27 )
-
-[sub_resource type="SpriteFrames" id=55]
-animations = [ {
-"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
-"loop": true,
-"name": "default",
-"speed": 6.0
-} ]
 
 [sub_resource type="TileSet" id=56]
 0/name = "itemtileset.png 0"
@@ -666,70 +643,8 @@ extents = Vector2( 104, 10 )
 [sub_resource type="RectangleShape2D" id=68]
 extents = Vector2( 7.5, 110.5 )
 
-[sub_resource type="ConvexPolygonShape2D" id=75]
-points = PoolVector2Array( 2, 0, 16, 0, 16, 7, 2, 7 )
-
-[sub_resource type="TileSet" id=62]
-0/name = "Tilesetv3.png 0"
-0/texture = ExtResource( 6 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 144, 832, 48, 32 )
-0/tile_mode = 1
-0/autotile/bitmask_mode = 1
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 48, Vector2( 0, 1 ), 24, Vector2( 1, 0 ), 56, Vector2( 1, 1 ), 56, Vector2( 2, 0 ), 24, Vector2( 2, 1 ), 48 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 16, 16 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 75 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 1 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
+[sub_resource type="RectangleShape2D" id=79]
+extents = Vector2( 31, 3.5 )
 
 [sub_resource type="ConvexPolygonShape2D" id=76]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -974,28 +889,13 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -524287, -1610612735, 131072, -524286, -1610612735, 65536, -524285, -1610612735, 0, -458751, -1610612735, 131073, -458750, -1610612735, 65537, -458749, -1610612735, 1, -65521, 2, 0, -65520, 2, 1, 15, 2, 65536, 16, 2, 65537, 65551, 2, 65536, 65552, 2, 65537, 131087, 2, 65536, 131088, 2, 65537, 196623, 2, 131072, 196624, 2, 131073, 393231, 2, 0, 393232, 2, 1, 458767, 2, 65536, 458768, 2, 65537, 524303, 2, 131072, 524304, 2, 131073, 655385, 0, 0, 655401, 0, 0, 720905, 2, 0, 720906, 2, 1, 720912, 2, 0, 720913, 2, 1, 786441, 2, 65536, 786442, 2, 65537, 786448, 2, 65536, 786449, 2, 65537, 851977, 2, 65536, 851978, 2, 65537, 851984, 2, 65536, 851985, 2, 65537, 917513, 2, 131072, 917514, 2, 131073, 917520, 2, 131072, 917521, 2, 131073 )
 
-[node name="torch" type="AnimatedSprite" parent="Background"]
+[node name="torch" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 416, 182 )
-z_index = 2
-frames = SubResource( 55 )
-frame = 1
-playing = true
+frame = 2
 
-[node name="Lightsource" parent="Background/torch" instance=ExtResource( 5 )]
-position = Vector2( 0, -4 )
-color = Color( 1, 0.85098, 0.658824, 1 )
-radius = 32
-
-[node name="torch2" type="AnimatedSprite" parent="Background"]
+[node name="torch2" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 673, 182 )
-z_index = 2
-frames = SubResource( 55 )
-playing = true
-
-[node name="Lightsource" parent="Background/torch2" instance=ExtResource( 5 )]
-position = Vector2( 0, -4 )
-color = Color( 1, 0.85098, 0.658824, 1 )
-radius = 32
+frame = 2
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 56 )
@@ -1026,12 +926,15 @@ position = Vector2( 544.5, 248.5 )
 rotation = -1.57079
 shape = SubResource( 68 )
 
-[node name="platforms" type="TileMap" parent="."]
-tile_set = SubResource( 62 )
-cell_size = Vector2( 16, 16 )
-collision_layer = 2049
-format = 1
-tile_data = PoolIntArray( 65557, 0, 0, 65558, 0, 65537, 65559, 0, 1, 65560, 0, 65536 )
+[node name="platform" parent="." instance=ExtResource( 11 )]
+position = Vector2( 376, 24 )
+
+[node name="TileMap" parent="platform" index="0"]
+tile_data = PoolIntArray( -3, 0, 0, -2, 0, 65537, -1, 0, 65537, -65536, 0, 65536 )
+
+[node name="CollisionShape2D" parent="platform" index="1"]
+position = Vector2( -7, -4.5 )
+shape = SubResource( 79 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -1133,10 +1036,10 @@ scale = Vector2( 7.1, 4.62465 )
 texture = ExtResource( 3 )
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = 1141.0
-margin_top = -504.0
-margin_right = 1181.0
-margin_bottom = 421.0
+margin_left = 1131.0
+margin_top = -501.0
+margin_right = 1171.0
+margin_bottom = 424.0
 rect_rotation = 359.999
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
@@ -1160,3 +1063,5 @@ color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 [connection signal="body_entered" from="nextrooms/room3" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room3" ]]
 [connection signal="body_entered" from="nextrooms/room1" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room1" ]]
 [connection signal="body_entered" from="nextrooms/room4" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room4" ]]
+
+[editable path="platform"]

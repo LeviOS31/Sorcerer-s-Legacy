@@ -17,7 +17,6 @@ func _ready():
 
 func _on_trigger_body_entered(body):
 	if body.name == "player" && !Global.cutscene_1_seen:
-		#DialogueManager.show_example_dialogue_balloon("first_boss_encounter", Dialogue_resource)
 		show_dialogue("first_boss_encounter",Dialogue_resource)
 		
 
@@ -28,3 +27,5 @@ func show_dialogue(title:String, resource: DialogueResource):
 		balloon.dialogue_line = dialogue_lines
 		get_tree().current_scene.add_child(balloon)
 		show_dialogue(yield(balloon, "actioned"), Dialogue_resource)
+	else:
+		get_tree().paused = false

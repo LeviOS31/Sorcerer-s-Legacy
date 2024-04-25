@@ -28,22 +28,26 @@ func _process(_delta):
 		death()
 
 func _physics_process(delta):
-	if !hit && !death:
-		match state:
-			WANDER:
-				velocity = velocity.move_toward(direction * speed, ACCL * delta)
-				animation.play("move")
-			IDLE:
-				velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
-				animation.play("idle")
-				
-		velocity.y += Gravity
-		velocity = move_and_slide(velocity)
-		if velocity.x != 0:
-			if velocity.x < 0:
-				$Sprite.scale = Vector2(1,1)
-			elif velocity.x > 0:
-				$Sprite.scale = Vector2(-1,1)
+	if !Global.is_in_dialogue:
+		if !hit && !death:
+			match state:
+				WANDER:
+					velocity = velocity.move_toward(direction * speed, ACCL * delta)
+					animation.play("move")
+				IDLE:
+					velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
+					animation.play("idle")
+					
+			velocity.y += Gravity
+			velocity = move_and_slide(velocity)
+			if velocity.x != 0:
+				if velocity.x < 0:
+					$Sprite.scale = Vector2(1,1)
+				elif velocity.x > 0:
+					$Sprite.scale = Vector2(-1,1)
+	else:
+		velocity = move_and_slide(Vector2.ZERO)
+		animation.play("idle")
 
 func _on_hurtbox_hit(enemy):
 	if !death:

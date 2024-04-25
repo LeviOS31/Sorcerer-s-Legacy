@@ -107,9 +107,6 @@ shader_param/light_strength_modifier = 1.0
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_vertical_guides_": [ 2549.0 ]
-}
 camera = NodePath("Camera")
 player = NodePath("player")
 
@@ -117,7 +114,7 @@ player = NodePath("player")
 position = Vector2( -125, 235 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 5
+frame = 4
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
