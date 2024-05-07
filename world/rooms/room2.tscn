@@ -891,11 +891,11 @@ tile_data = PoolIntArray( -524287, -1610612735, 131072, -524286, -1610612735, 65
 
 [node name="torch" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 416, 182 )
-frame = 2
+frame = 3
 
 [node name="torch2" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 673, 182 )
-frame = 2
+frame = 3
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 56 )

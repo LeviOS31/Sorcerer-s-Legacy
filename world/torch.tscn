@@ -47,7 +47,7 @@ tracks/0/keys = {
 position = Vector2( 232, 138 )
 z_index = 2
 frames = SubResource( 76 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="." instance=ExtResource( 1 )]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://world/rooms/room1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://world/rooms/room2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://world/Lighting.gd" type="Script" id=6]
 [ext_resource path="res://world/rooms/room4.tscn" type="PackedScene" id=7]
+[ext_resource path="res://world/rooms/room6.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -107,6 +108,10 @@ shader_param/light_strength_modifier = 1.0
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 911.0 ],
+"_edit_vertical_guides_": [ 2483.0 ]
+}
 camera = NodePath("Camera")
 player = NodePath("player")
 
@@ -114,7 +119,7 @@ player = NodePath("player")
 position = Vector2( -125, 235 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 4
+frame = 1
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
@@ -136,6 +141,9 @@ position = Vector2( 1629, -20 )
 
 [node name="room4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2461, 511 )
+
+[node name="room6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1278, 735 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

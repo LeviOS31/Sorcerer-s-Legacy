@@ -29,6 +29,12 @@ func _on_hurtbox_area_entered(area):
 			add_child(timer)
 			timer.start()
 			print("started damage")
+		if area.attacktype == "spikes":
+			parent.health = parent.health - area.damage
+			var dummyarea = Node2D.new()
+			dummyarea.global_position = parent.global_position
+			dummyarea.global_position.y += 200
+			emit_signal("hit", dummyarea)
 
 func _on_hurtbox_area_exited(area):
 	if area.name == "hitbox":

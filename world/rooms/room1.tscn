@@ -992,21 +992,23 @@ tile_data = PoolIntArray( 1572950, 18, 0, 1572966, 19, 0, 1638481, 16, 0, 170404
 
 [node name="torch" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 64, 149 )
-frame = 1
+frame = 3
 
 [node name="torch2" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 225, 149 )
-frame = 3
+frame = 1
 
 [node name="torch3" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 401, 166 )
+frame = 0
 
 [node name="torch4" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 577, 181 )
-frame = 1
+frame = 3
 
 [node name="torch5" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 736, 182 )
+frame = 0
 
 [node name="Door" type="Sprite" parent="."]
 position = Vector2( -170, 216 )
@@ -1105,9 +1107,9 @@ texture = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="Trasitiongradient"]
 margin_left = 10.0
-margin_top = -100.0
+margin_top = -293.89
 margin_right = 50.0
-margin_bottom = 391.0
+margin_bottom = 197.11
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
 [node name="Node2D" type="Node2D" parent="."]

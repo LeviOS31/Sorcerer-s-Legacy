@@ -11,6 +11,7 @@ var jump_pressed_time = 0.0
 var max_jump_time = 0.30
 var is_jumping = false
 export var is_attacking = false
+var jump_amount = 0;
 
 onready var panimation = $AnimationPlayer
 onready var tanimation = $AnimationTree
@@ -50,14 +51,17 @@ func move(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, Friction * delta)
 			
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if Input.is_action_just_pressed("jump") and (is_on_floor() or (Playerstats.dubblejump and jump_amount < 2)):
 				is_jumping = true
 				jump_pressed_time = 0.0
+				jump_amount += 1
 			if Input.is_action_pressed("jump") and is_jumping and jump_pressed_time < max_jump_time:
 				velocity.y = Jump_speed
 				jump_pressed_time += delta
 			if Input.is_action_just_released("jump"):
 				is_jumping = false
+			if is_on_floor():
+				jump_amount = 0;
 			
 			
 			if velocity.y < 0 and !is_on_floor():
@@ -97,7 +101,8 @@ func attack_finished():
 	$playersprite/hurtbox/Position2D2.strength = 0
 
 func _on_hurtbox_hit(enemy):
-	print("hit")
+	#print("hit")
 	panimation.play("damage")
+	print(enemy.global_position)
 	var knockbackdirection = (global_position - enemy.global_position).normalized()
 	velocity = velocity + knockbackdirection * Global.knockbackspeed
