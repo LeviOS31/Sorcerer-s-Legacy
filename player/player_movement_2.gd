@@ -51,7 +51,7 @@ func move(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, Friction * delta)
 			
-			if Input.is_action_just_pressed("jump") and (is_on_floor() or (Playerstats.dubblejump and jump_amount < 2)):
+			if Input.is_action_just_pressed("jump") and (is_on_floor() or (Playerstats.dubblejump and jump_amount < 1)):
 				is_jumping = true
 				jump_pressed_time = 0.0
 				jump_amount += 1

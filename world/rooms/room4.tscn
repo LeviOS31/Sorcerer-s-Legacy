@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/World/Tilesetv3.png" type="Texture" id=1]
 [ext_resource path="res://world/torch.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Assets/World/wooddoor.png" type="Texture" id=9]
 [ext_resource path="res://Assets/World/trasitiongradient.png" type="Texture" id=10]
 [ext_resource path="res://world/platform.tscn" type="PackedScene" id=11]
+[ext_resource path="res://general purpose/hurtbox.tscn" type="PackedScene" id=12]
+[ext_resource path="res://world/rooms/secret door.gd" type="Script" id=13]
 
 [sub_resource type="TileSet" id=73]
 2/name = "Tilesetv3.png 2"
@@ -605,6 +607,23 @@
 20/shapes = [  ]
 20/z_index = 0
 
+[sub_resource type="Animation" id=123]
+resource_name = "burn"
+length = 1.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("door:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 6, 7, 8, 9, 10, 11, 5 ]
+}
+
 [sub_resource type="Animation" id=108]
 resource_name = "secret door"
 length = 4.3
@@ -622,11 +641,17 @@ tracks/0/keys = {
 "values": [ 0, 1, 0, 2, 0, 3, 0, 4 ]
 }
 
+[sub_resource type="RectangleShape2D" id=121]
+extents = Vector2( 10, 13 )
+
+[sub_resource type="RectangleShape2D" id=122]
+extents = Vector2( 10, 14 )
+
 [sub_resource type="RectangleShape2D" id=109]
 extents = Vector2( 23, 3.5 )
 
 [sub_resource type="RectangleShape2D" id=110]
-extents = Vector2( 31, 3.5 )
+extents = Vector2( 23, 3.5 )
 
 [sub_resource type="ConvexPolygonShape2D" id=111]
 points = PoolVector2Array( 32, 16, 0, 16, 0, 12, 32, 12 )
@@ -1157,27 +1182,41 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="torch" parent="Background" instance=ExtResource( 2 )]
-frame = 0
 
 [node name="torch2" parent="Background" instance=ExtResource( 2 )]
 position = Vector2( 386, 138 )
-frame = 0
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 77 )
 cell_size = Vector2( 8, 8 )
 format = 1
 
-[node name="secret door" type="Area2D" parent="Background"]
+[node name="secret door" type="Area2D" parent="Background" groups=["action"]]
+script = ExtResource( 13 )
 
 [node name="door" type="Sprite" parent="Background/secret door"]
 position = Vector2( 742, 376 )
 texture = ExtResource( 9 )
-hframes = 6
+hframes = 12
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/secret door"]
 autoplay = "secret door"
+anims/burn = SubResource( 123 )
 "anims/secret door" = SubResource( 108 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/secret door"]
+position = Vector2( 742, 387 )
+shape = SubResource( 121 )
+
+[node name="hurtbox" parent="Background/secret door" instance=ExtResource( 12 )]
+position = Vector2( 742, 387 )
+collision_mask = 16384
+parent = NodePath("..")
+
+[node name="CollisionShape2D" parent="Background/secret door/hurtbox" index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 122 )
 
 [node name="platforms" type="Node2D" parent="."]
 
@@ -1205,10 +1244,10 @@ shape = SubResource( 109 )
 position = Vector2( 664, 360 )
 
 [node name="TileMap" parent="platforms/platform3" index="0"]
-tile_data = PoolIntArray( -2, 0, 65538, -1, 0, 65537, -65536, 0, 65537, -65535, 0, 2 )
+tile_data = PoolIntArray( -2, 0, 65538, -1, 0, 65537, -65536, 0, 2 )
 
 [node name="CollisionShape2D" parent="platforms/platform3" index="1"]
-position = Vector2( 7, -4.5 )
+position = Vector2( -1, -4.5 )
 shape = SubResource( 110 )
 
 [node name="hitbox" type="Area2D" parent="."]
@@ -1285,7 +1324,7 @@ position = Vector2( 88, 47 )
 position = Vector2( 26, 377 )
 
 [node name="Trasitiongradient2" type="Sprite" parent="."]
-position = Vector2( 661, 584 )
+position = Vector2( 681, 584 )
 rotation = 6.28318
 scale = Vector2( 7.1, 4.62465 )
 texture = ExtResource( 10 )
@@ -1301,7 +1340,7 @@ rect_pivot_offset = Vector2( -178.017, 821.996 )
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
 [node name="Trasitiongradient3" type="Sprite" parent="."]
-position = Vector2( 443.465, 72.4719 )
+position = Vector2( 443.465, 63.4719 )
 rotation = 4.71238
 scale = Vector2( 7.1, 4.62465 )
 texture = ExtResource( 10 )
@@ -1314,22 +1353,8 @@ margin_bottom = 928.0
 rect_rotation = 270.0
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
-[node name="Trasitiongradient4" type="Sprite" parent="."]
-position = Vector2( 427.466, 433.001 )
-rotation = 1.57079
-scale = Vector2( 7.1, 4.62465 )
-texture = ExtResource( 10 )
-
-[node name="ColorRect4" type="ColorRect" parent="."]
-margin_left = 890.0
-margin_top = 504.523
-margin_right = 930.0
-margin_bottom = 1429.52
-rect_rotation = 89.9999
-color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
-
 [node name="Trasitiongradient5" type="Sprite" parent="."]
-position = Vector2( 167.017, -65.9969 )
+position = Vector2( 156.017, -65.9969 )
 rotation = 3.14159
 scale = Vector2( 7.1, 4.62465 )
 texture = ExtResource( 10 )
@@ -1344,9 +1369,13 @@ rect_rotation = 180.0
 rect_pivot_offset = Vector2( -178.017, 821.996 )
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
+[connection signal="body_entered" from="Background/secret door" to="Background/secret door" method="_on_secret_door_body_entered"]
+[connection signal="body_exited" from="Background/secret door" to="Background/secret door" method="_on_secret_door_body_exited"]
+[connection signal="hit" from="Background/secret door/hurtbox" to="Background/secret door" method="_on_hurtbox_hit"]
 [connection signal="body_entered" from="nextrooms/room2" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room2" ]]
 [connection signal="body_entered" from="nextrooms/room6" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room6" ]]
 
+[editable path="Background/secret door/hurtbox"]
 [editable path="platforms/platform"]
 [editable path="platforms/platform2"]
 [editable path="platforms/platform3"]

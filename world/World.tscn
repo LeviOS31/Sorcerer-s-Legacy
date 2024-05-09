@@ -119,7 +119,7 @@ player = NodePath("player")
 position = Vector2( -125, 235 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 1
+frame = 0
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
