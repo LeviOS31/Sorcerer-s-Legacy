@@ -26,4 +26,5 @@ func entered_actionable_object(object):
 
 func exited_actionable_object(object):
 	if object.active:
-		instance.queue_free()
+		if is_instance_valid(instance):
+			instance.queue_free()

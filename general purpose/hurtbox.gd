@@ -49,5 +49,6 @@ func take_damage_overtime():
 			parent.health = parent.health - area.damage
 			emit_signal("hit", area)
 	if areas.size() == 0:
-		timer.queue_free()
-		print("ended damage")
+		if is_instance_valid(timer):
+			timer.queue_free()
+			print("ended damage")

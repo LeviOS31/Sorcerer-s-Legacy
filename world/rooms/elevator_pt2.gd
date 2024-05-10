@@ -8,6 +8,7 @@ signal exited(object)
 
 func _input(event):
 	if player_in && event.is_action_pressed("action"):
+		emit_signal("exited", self)
 		active = false
 
 func _on_Area2D_body_entered(body):

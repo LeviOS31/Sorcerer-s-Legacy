@@ -12,6 +12,7 @@ signal exited(object)
 func _input(event):
 	if event.is_action_pressed("action") && player_in && anim_finished:
 		enter_secret_room()
+		emit_signal("exited", self)
 		active = false
 
 func _on_hurtbox_hit(enemy):
