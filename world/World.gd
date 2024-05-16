@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var currentroom = "room1"
+var currentroom = "room7"
 var nextroom = ""
 var previousroom = ""
 export (NodePath) onready var camera = get_node(camera)

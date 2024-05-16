@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fearther.png-0529e2d0f82bf5b4fde9ff76c13c35e2.stex"
+path="res://.import/run_7.png-e8ba432df130948db696fec6e5fb4220.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Power ups/fearther.png"
-dest_files=[ "res://.import/fearther.png-0529e2d0f82bf5b4fde9ff76c13c35e2.stex" ]
+source_file="res://Assets/Enemies/Elementals_Crystal_Mauler/animations/PNG/run/run_7.png"
+dest_files=[ "res://.import/run_7.png-e8ba432df130948db696fec6e5fb4220.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

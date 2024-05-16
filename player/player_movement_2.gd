@@ -106,3 +106,4 @@ func _on_hurtbox_hit(enemy):
 	print(enemy.global_position)
 	var knockbackdirection = (global_position - enemy.global_position).normalized()
 	velocity = velocity + knockbackdirection * Global.knockbackspeed
+	get_tree().get_nodes_in_group("camera")[0].add_trauma(1)

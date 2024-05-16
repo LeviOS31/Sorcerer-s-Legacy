@@ -14,6 +14,11 @@ func _input(event):
 			active = false
 			$effect.queue_free()
 			$Fearther.queue_free()
+			var package = load("res://general purpose/UI/aquired_item.tscn");
+			var instance = package.instance()
+			get_tree().get_nodes_in_group("canvas")[0].add_child(instance)
+			instance.aquire_powerup("double_jump")
+			
 
 func _on_altar_body_entered(body):
 	if !Playerstats.dubblejump and body.name == "player":

@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://world/rooms/room1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world/World.gd" type="Script" id=3]
-[ext_resource path="res://general purpose/UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://general purpose/UI/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://world/rooms/room2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://world/Lighting.gd" type="Script" id=6]
 [ext_resource path="res://world/rooms/room4.tscn" type="PackedScene" id=7]
 [ext_resource path="res://world/rooms/room6.tscn" type="PackedScene" id=8]
+[ext_resource path="res://world/rooms/room7.tscn" type="PackedScene" id=9]
+[ext_resource path="res://world/Camera_shake.gd" type="Script" id=10]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -108,15 +110,11 @@ shader_param/light_strength_modifier = 1.0
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 911.0 ],
-"_edit_vertical_guides_": [ 2483.0 ]
-}
 camera = NodePath("Camera")
 player = NodePath("player")
 
 [node name="player" parent="." groups=["player"] instance=ExtResource( 2 )]
-position = Vector2( -125, 235 )
+position = Vector2( 3727, 880 )
 
 [node name="playersprite" parent="player" index="0"]
 frame = 4
@@ -127,12 +125,13 @@ parameters/playback = SubResource( 1 )
 [node name="RemoteTransform2D" parent="player" index="4"]
 remote_path = NodePath("../../Camera")
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2( -125, 235 )
+[node name="Camera" type="Camera2D" parent="." groups=["camera"]]
+position = Vector2( 3727, 880 )
 current = true
 process_mode = 0
 limit_smoothed = true
 smoothing_enabled = true
+script = ExtResource( 10 )
 
 [node name="room1" parent="." instance=ExtResource( 1 )]
 
@@ -145,7 +144,10 @@ position = Vector2( 2461, 511 )
 [node name="room6" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1278, 735 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="room7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 3539, 639 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvas"]]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 3 )

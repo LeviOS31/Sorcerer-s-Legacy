@@ -996,7 +996,6 @@ frame = 3
 
 [node name="torch2" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 225, 149 )
-frame = 1
 
 [node name="torch3" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 401, 166 )

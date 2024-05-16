@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/World/altar_fire.png" type="Texture" id=10]
 [ext_resource path="res://Assets/World/trasitiongradient.png" type="Texture" id=11]
 [ext_resource path="res://world/rooms/room.gd" type="Script" id=12]
-[ext_resource path="res://Assets/Power ups/fearther.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Power ups/double_jump.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Particles/swurling effects/13_vortex_spritesheet.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Particles/swurling effects/16_sunburn_spritesheet.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Particles/swurling effects/20_magicbubbles_spritesheet.png" type="Texture" id=16]
@@ -2834,22 +2834,21 @@ format = 1
 [node name="torch" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 424, 240 )
 z_index = 0
-frame = 0
+frame = 2
 
 [node name="torch2" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 344, 248 )
 z_index = 0
-frame = 0
+frame = 2
 
 [node name="torch3" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 264, 232 )
 z_index = 0
-frame = 0
+frame = 2
 
 [node name="torch4" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 200, 200 )
 z_index = 0
-frame = 3
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 117 )
@@ -2871,7 +2870,6 @@ shape = SubResource( 122 )
 [node name="Altar_fire1" type="AnimatedSprite" parent="Background/altar"]
 position = Vector2( 81, 232 )
 frames = SubResource( 127 )
-frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/altar/Altar_fire1" instance=ExtResource( 7 )]
@@ -2882,7 +2880,7 @@ radius = 128
 [node name="Altar_fire2" type="AnimatedSprite" parent="Background/altar"]
 position = Vector2( 7, 232 )
 frames = SubResource( 127 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Lightsource" parent="Background/altar/Altar_fire2" instance=ExtResource( 7 )]
@@ -2901,7 +2899,7 @@ rotation = -1.57079
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 494 )
 animation = "New Anim 4"
-frame = 3
+frame = 58
 playing = true
 
 [node name="Fearther" type="Sprite" parent="Background/altar"]
