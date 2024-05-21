@@ -1179,7 +1179,7 @@ format = 1
 
 [node name="torch" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 73, 51 )
-frame = 3
+frame = 0
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 124 )
@@ -1188,6 +1188,7 @@ format = 1
 
 [node name="torch2" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 167, 161 )
+frame = 2
 
 [node name="platforms" type="Node2D" parent="."]
 
@@ -1246,7 +1247,10 @@ tile_data = PoolIntArray( -589824, 3, 65536, -589823, 3, 65537, -589822, 3, 1, -
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="crystal_mauler" parent="enemies" instance=ExtResource( 13 )]
-position = Vector2( 446, 239 )
+position = Vector2( 550, 239 )
+
+[node name="CrystalMauler" parent="enemies/crystal_mauler" index="1"]
+frame = 189
 
 [node name="Deaths" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -1336,3 +1340,8 @@ texture = ExtResource( 12 )
 [editable path="platforms/platform2"]
 [editable path="platforms/platform3"]
 [editable path="platforms/platform4"]
+[editable path="enemies/crystal_mauler"]
+[editable path="enemies/crystal_mauler/hitbox"]
+[editable path="enemies/crystal_mauler/hurtbox"]
+[editable path="enemies/crystal_mauler/attack_1/hitbox"]
+[editable path="enemies/crystal_mauler/attack_2/hitbox"]

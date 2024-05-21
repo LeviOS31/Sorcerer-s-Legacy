@@ -19,8 +19,11 @@ onready var State = IDLE
 var is_attacking = false
 var player
 var died = false
+onready var attack_timer = $attack_timer
+var recharge = false
 
 func _ready():
+	randomize()
 	player = get_tree().get_nodes_in_group("player")[0]
 
 # Called when the node enters the scene tree for the first time.
@@ -38,18 +41,25 @@ func move(delta):
 				match State:
 					IDLE:
 						velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-						if abs(global_position.x - player.global_position.x) > 150:
+						if abs(global_position.x - player.global_position.x) > 100 || abs(global_position.x - player.global_position.x) < 50:
 							State = MOVE
+						elif !recharge:
+							Attack()
+							pass
 					MOVE:
-						var direction = (player.global_position - global_position).normalized()
-						velocity = velocity.move_toward(Vector2(direction.x, 1) * Speed, Accl * delta)
+						var direction = 0
+						if abs(global_position.x - player.global_position.x) > 100:
+							direction = clamp(player.global_position.x - global_position.x, -1, 1)
+						elif abs(global_position.x - player.global_position.x) < 50:
+							direction = clamp(player.global_position.x - global_position.x, -1, 1)
+							direction = -direction
+						velocity = velocity.move_toward(Vector2(direction, 1) * Speed, Accl * delta)
 						
-						if abs(global_position.x - player.global_position.x) < 150:
+						if abs(global_position.x - player.global_position.x) < 100 && abs(global_position.x - player.global_position.x) > 50:
 							State = IDLE
 							
-							
 				velocity = move_and_slide(velocity)
-				if velocity.x != 0 && animator.current_animation != "hit":
+				if velocity.x != 0 && animator.current_animation != "hit" && !is_attacking:
 					animator.play("run")
 				else:
 					animator.play("idle")
@@ -80,3 +90,25 @@ func death():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "hit":
 		animator.play("idle")
+	elif anim_name == "attack-1" || anim_name == "attack-2":
+		recharge = true
+		attack_timer.start(1);
+		is_attacking = false
+	
+
+func Attack():
+	if !is_attacking:
+		is_attacking = true
+		if abs(global_position.y - player.global_position.y) > 80:
+			print("attack high")
+			animator.play("attack-2")
+		else:
+			if rand_range(100,0) > 80:
+				animator.play("attack-2")
+				print("attack high random")
+			else:
+				print("attack low")
+				animator.play("attack-1")
+
+func _on_attack_timer_timeout():
+	recharge = false

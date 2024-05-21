@@ -301,7 +301,7 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 2
+frame = 5
 
 [node name="Particles2D" type="Particles2D" parent="playersprite"]
 position = Vector2( 22, 6 )

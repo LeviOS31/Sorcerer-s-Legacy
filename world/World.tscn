@@ -114,10 +114,10 @@ camera = NodePath("Camera")
 player = NodePath("player")
 
 [node name="player" parent="." groups=["player"] instance=ExtResource( 2 )]
-position = Vector2( 3727, 880 )
+position = Vector2( 1302, 964 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 4
+frame = 3
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
@@ -126,7 +126,7 @@ parameters/playback = SubResource( 1 )
 remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." groups=["camera"]]
-position = Vector2( 3727, 880 )
+position = Vector2( 1302, 964 )
 current = true
 process_mode = 0
 limit_smoothed = true
