@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Assets/World/Tilesetv3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/World/itemtileset.png" type="Texture" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://scene's/scene_room7.gd" type="Script" id=11]
 [ext_resource path="res://Assets/World/gate.png" type="Texture" id=12]
 [ext_resource path="res://enemies/crystal_mauler/crystal_mauler.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/World/altar_01.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Boss_items/diamond-sh.png" type="Texture" id=15]
+[ext_resource path="res://world/rooms/altar_R7.gd" type="Script" id=16]
 
 [sub_resource type="TileSet" id=121]
 2/name = "Tilesetv3.png 2"
@@ -607,6 +610,67 @@
 20/shapes = [  ]
 20/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=494]
+extents = Vector2( 26.5, 7.5 )
+
+[sub_resource type="AtlasTexture" id=503]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=504]
+atlas = ExtResource( 15 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=505]
+atlas = ExtResource( 15 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=506]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=507]
+atlas = ExtResource( 15 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=508]
+atlas = ExtResource( 15 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=509]
+atlas = ExtResource( 15 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=510]
+atlas = ExtResource( 15 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=511]
+animations = [ {
+"frames": [ SubResource( 503 ), SubResource( 504 ), SubResource( 505 ), SubResource( 506 ), SubResource( 507 ), SubResource( 508 ), SubResource( 509 ), SubResource( 510 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=497]
+resource_name = "feather"
+length = 2.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fearther:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 46, 232 ), Vector2( 46, 230 ), Vector2( 46, 232 ) ]
+}
+
 [sub_resource type="RectangleShape2D" id=125]
 extents = Vector2( 22, 3.5 )
 
@@ -1115,11 +1179,10 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [sub_resource type="RectangleShape2D" id=128]
 extents = Vector2( 30.5, 8.625 )
 
-[sub_resource type="RectangleShape2D" id=129]
+[sub_resource type="RectangleShape2D" id=498]
 extents = Vector2( 4, 47.5 )
 
-[sub_resource type="Animation" id=133]
-resource_name = "finish"
+[sub_resource type="Animation" id=499]
 tracks/0/type = "value"
 tracks/0/path = NodePath("gate:position")
 tracks/0/interp = 1
@@ -1133,8 +1196,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 45 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=132]
-resource_name = "gate_close"
+[sub_resource type="Animation" id=500]
 tracks/0/type = "value"
 tracks/0/path = NodePath("gate:position")
 tracks/0/interp = 1
@@ -1148,10 +1210,10 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 45 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=130]
+[sub_resource type="RectangleShape2D" id=501]
 extents = Vector2( 15, 23 )
 
-[sub_resource type="RectangleShape2D" id=131]
+[sub_resource type="RectangleShape2D" id=502]
 extents = Vector2( 15, 22.5 )
 
 [node name="room7" type="Node2D" groups=["room"]]
@@ -1179,7 +1241,7 @@ format = 1
 
 [node name="torch" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 73, 51 )
-frame = 0
+frame = 2
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 124 )
@@ -1188,7 +1250,30 @@ format = 1
 
 [node name="torch2" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 167, 161 )
-frame = 2
+frame = 0
+
+[node name="altar" type="Area2D" parent="Background" groups=["action"]]
+position = Vector2( 893, -1 )
+script = ExtResource( 16 )
+
+[node name="Altar" type="Sprite" parent="Background/altar"]
+position = Vector2( 45, 249 )
+texture = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/altar"]
+position = Vector2( 46.5, 249.5 )
+shape = SubResource( 494 )
+
+[node name="Fearther" type="AnimatedSprite" parent="Background/altar"]
+position = Vector2( 46, 231.544 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 511 )
+playing = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Background/altar/Fearther"]
+root_node = NodePath("../..")
+autoplay = "feather"
+anims/feather = SubResource( 497 )
 
 [node name="platforms" type="Node2D" parent="."]
 
@@ -1249,9 +1334,6 @@ tile_data = PoolIntArray( -589824, 3, 65536, -589823, 3, 65537, -589822, 3, 1, -
 [node name="crystal_mauler" parent="enemies" instance=ExtResource( 13 )]
 position = Vector2( 550, 239 )
 
-[node name="CrystalMauler" parent="enemies/crystal_mauler" index="1"]
-frame = 189
-
 [node name="Deaths" type="Node2D" parent="."]
 script = ExtResource( 8 )
 
@@ -1307,21 +1389,21 @@ script = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scene/Trigger"]
 position = Vector2( 320, 208.5 )
-shape = SubResource( 129 )
+shape = SubResource( 498 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="scene"]
-anims/finish = SubResource( 133 )
-anims/gate_close = SubResource( 132 )
+anims/finish = SubResource( 499 )
+anims/gate_close = SubResource( 500 )
 
 [node name="gate" type="StaticBody2D" parent="scene"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scene/gate"]
 position = Vector2( 248, 184 )
-shape = SubResource( 130 )
+shape = SubResource( 501 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="scene/gate"]
 position = Vector2( 757, 183.5 )
-shape = SubResource( 131 )
+shape = SubResource( 502 )
 
 [node name="Gate2" type="Sprite" parent="scene/gate"]
 position = Vector2( 757, 185 )
@@ -1333,6 +1415,8 @@ position = Vector2( 248, 185 )
 z_index = -1
 texture = ExtResource( 12 )
 
+[connection signal="body_entered" from="Background/altar" to="Background/altar" method="_on_altar_body_entered"]
+[connection signal="body_exited" from="Background/altar" to="Background/altar" method="_on_altar_body_exited"]
 [connection signal="body_entered" from="nextrooms/room4" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room4" ]]
 [connection signal="body_entered" from="scene/Trigger" to="scene" method="_on_Trigger_body_entered"]
 
@@ -1341,7 +1425,7 @@ texture = ExtResource( 12 )
 [editable path="platforms/platform3"]
 [editable path="platforms/platform4"]
 [editable path="enemies/crystal_mauler"]
+[editable path="enemies/crystal_mauler/CrystalMauler/attack_1/hitbox"]
+[editable path="enemies/crystal_mauler/CrystalMauler/attack_2/hitbox"]
 [editable path="enemies/crystal_mauler/hitbox"]
 [editable path="enemies/crystal_mauler/hurtbox"]
-[editable path="enemies/crystal_mauler/attack_1/hitbox"]
-[editable path="enemies/crystal_mauler/attack_2/hitbox"]
