@@ -341,6 +341,9 @@ position = Vector2( 39, 9 )
 color = Color( 1, 0.85098, 0.658824, 1 )
 strength = 0.0
 
+[node name="DJ_emitter" type="Position2D" parent="playersprite"]
+position = Vector2( -1, 18 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -0.5 )
 shape = SubResource( 110 )

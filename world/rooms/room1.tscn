@@ -1115,11 +1115,6 @@ color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 position = Vector2( 140, 69 )
 z_index = -2
 
-[node name="ColorRect" type="ColorRect" parent="Node2D"]
-margin_right = 56.0
-margin_bottom = 79.0
-color = Color( 0.627451, 0.568627, 0.439216, 0.733333 )
-
 [node name="Lightsource" parent="Node2D" instance=ExtResource( 10 )]
 position = Vector2( 28, 25 )
 color = Color( 0.768627, 0.776471, 1, 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://world/rooms/room1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://world/Camera_shake.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Background/mountains.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Background/sky.png" type="Texture" id=12]
+[ext_resource path="res://world/rooms/room3.tscn" type="PackedScene" id=13]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -110,13 +111,52 @@ shader_param/will_smooth_shade = false
 shader_param/band_decay_rate = 0.5
 shader_param/light_strength_modifier = 1.0
 
+[sub_resource type="Animation" id=6]
+resource_name = "inside"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/dark_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.137255, 0.105882, 0.270588, 0.490196 ), Color( 0.137255, 0.105882, 0.270588, 0.827451 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "outside"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/dark_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.137255, 0.105882, 0.270588, 0.827451 ), Color( 0.137255, 0.105882, 0.270588, 0.490196 ) ]
+}
+
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 44.0 ],
+"_edit_vertical_guides_": [ 2709.0 ]
+}
 camera = NodePath("Camera")
 player = NodePath("player")
 
 [node name="player" parent="." groups=["player"] instance=ExtResource( 2 )]
-position = Vector2( -123, 235 )
+position = Vector2( -102, 238 )
+
+[node name="playersprite" parent="player" index="0"]
+frame = 1
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
@@ -125,7 +165,7 @@ parameters/playback = SubResource( 1 )
 remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." groups=["camera"]]
-position = Vector2( -123, 235 )
+position = Vector2( -102, 238 )
 current = true
 process_mode = 0
 limit_smoothed = true
@@ -136,6 +176,9 @@ script = ExtResource( 10 )
 
 [node name="room2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1629, -20 )
+
+[node name="room3" parent="." groups=["room"] instance=ExtResource( 13 )]
+position = Vector2( 3335, -196 )
 
 [node name="room4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2461, 511 )
@@ -158,48 +201,68 @@ camera_path = NodePath("../../Camera")
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
 player = NodePath("../../player")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+scroll_base_scale = Vector2( 0.2, 0.001 )
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+motion_scale = Vector2( 2, 1 )
 
-[node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 105, 130 )
+[node name="Sky" type="TextureRect" parent="CanvasLayer/ParallaxBackground/ParallaxLayer2"]
+margin_top = 3.0
+margin_right = 3000.0
+margin_bottom = 259.0
 texture = ExtResource( 12 )
+stretch_mode = 2
 
-[node name="Sky2" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 516, 130 )
-texture = ExtResource( 12 )
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
 
-[node name="Sky3" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 929, 130 )
-texture = ExtResource( 12 )
-
-[node name="Sky4" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 1340, 130 )
-texture = ExtResource( 12 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 1, 0.1 )
-
-[node name="Mountains" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 112.331, 216.25 )
-scale = Vector2( 1.59934, 1.59934 )
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+margin_top = 155.0
+margin_right = 3000.0
+margin_bottom = 338.0
 texture = ExtResource( 11 )
+stretch_mode = 2
 
-[node name="Mountains2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 444, 216 )
-scale = Vector2( 1.59934, 1.59934 )
-texture = ExtResource( 11 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" groups=["Darkness_animator"]]
+anims/inside = SubResource( 6 )
+anims/outside = SubResource( 5 )
 
-[node name="Mountains3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 775.331, 216 )
-scale = Vector2( 1.59934, 1.59934 )
-texture = ExtResource( 11 )
+[node name="hider" type="Node" parent="."]
 
-[node name="Mountains4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 1107, 215.75 )
-scale = Vector2( 1.59934, 1.59934 )
-texture = ExtResource( 11 )
+[node name="ColorRect" type="ColorRect" parent="hider"]
+margin_left = 1322.0
+margin_top = -114.0
+margin_right = 1502.0
+margin_bottom = 413.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="hider"]
+margin_left = 2748.0
+margin_top = -338.0
+margin_right = 3255.0
+margin_bottom = 186.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="hider"]
+margin_left = 2136.0
+margin_top = 515.0
+margin_right = 2465.0
+margin_bottom = 1163.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="hider"]
+margin_left = 2460.0
+margin_top = 361.0
+margin_right = 2640.0
+margin_bottom = 532.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="hider"]
+margin_left = 3297.0
+margin_top = 615.0
+margin_right = 3548.0
+margin_bottom = 786.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
 [editable path="player"]
 [editable path="player/playersprite/hitbox"]
