@@ -146,9 +146,6 @@ tracks/0/keys = {
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 220.0 ]
-}
 camera = NodePath("Camera")
 player = NodePath("player")
 
@@ -156,7 +153,7 @@ player = NodePath("player")
 position = Vector2( -102, 238 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 0
+frame = 4
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
@@ -180,6 +177,9 @@ position = Vector2( 1629, -20 )
 [node name="room3" parent="." groups=["room"] instance=ExtResource( 13 )]
 position = Vector2( 3335, -196 )
 
+[node name="roomoutside1" parent="." instance=ExtResource( 14 )]
+position = Vector2( 4984, -20 )
+
 [node name="room4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2461, 511 )
 
@@ -188,9 +188,6 @@ position = Vector2( 1278, 735 )
 
 [node name="room7" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3539, 639 )
-
-[node name="roomoutside1" parent="." instance=ExtResource( 14 )]
-position = Vector2( 4984, -20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvas"]]
 
@@ -212,7 +209,7 @@ motion_scale = Vector2( 2, 1 )
 
 [node name="Sky" type="TextureRect" parent="CanvasLayer/ParallaxBackground/ParallaxLayer2"]
 margin_top = 3.0
-margin_right = 3000.0
+margin_right = 7000.0
 margin_bottom = 259.0
 texture = ExtResource( 12 )
 stretch_mode = 2

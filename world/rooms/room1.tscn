@@ -992,22 +992,21 @@ tile_data = PoolIntArray( 1572950, 18, 0, 1572966, 19, 0, 1638481, 16, 0, 170404
 
 [node name="torch" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 64, 149 )
-frame = 3
+frame = 0
 
 [node name="torch2" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 225, 149 )
+frame = 2
 
 [node name="torch3" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 401, 166 )
-frame = 0
 
 [node name="torch4" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 577, 181 )
-frame = 3
+frame = 0
 
 [node name="torch5" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 736, 182 )
-frame = 0
 
 [node name="Door" type="Sprite" parent="."]
 position = Vector2( -170, 216 )

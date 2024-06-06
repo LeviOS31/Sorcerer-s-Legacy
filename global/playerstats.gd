@@ -1,7 +1,7 @@
 extends Node
 
 var max_health = 4
-var dubblejump = false
+var dubblejump = true
 
 
 #BOSS_ITEMS

@@ -53,21 +53,27 @@ func move(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, Friction * delta)
 			
-			if Input.is_action_just_pressed("jump") and (is_on_floor() or (Playerstats.dubblejump and jump_amount < 1)):
+			if Input.is_action_just_pressed("jump") and (is_on_floor() or (Playerstats.dubblejump and jump_amount < 2)):
 				is_jumping = true
 				jump_pressed_time = 0.0
-				if (Playerstats.dubblejump and jump_amount < 1):
-					var instance = DJ_particles.instance();
-					get_tree().add_child(instance);
-					instance.global_position = DJ_emitter.global_position;
-					instance.get_child(0).emitting = true
-				jump_amount += 1
-			if Input.is_action_pressed("jump") and is_jumping and jump_pressed_time < max_jump_time:
+				if is_on_floor() or jump_amount == 1:
+					jump_amount += 1
+				else:
+					jump_amount += 2
+				if (Playerstats.dubblejump and jump_amount == 2):
+					 # Trigger the double jump particles
+					var instance = DJ_particles.instance()
+					get_tree().get_root().add_child(instance)
+					instance.global_position = DJ_emitter.global_position
+					instance.start()
+					
+				# Increment the jump amount after checking for double jump
+			elif Input.is_action_pressed("jump") and is_jumping and jump_pressed_time < max_jump_time:
 				velocity.y = Jump_speed
 				jump_pressed_time += delta
-			if Input.is_action_just_released("jump"):
+			elif Input.is_action_just_released("jump"):
 				is_jumping = false
-			if is_on_floor():
+			elif is_on_floor():
 				jump_amount = 0;
 			
 			
