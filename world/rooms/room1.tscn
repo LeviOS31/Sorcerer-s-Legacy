@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://world/rooms/nextrooms.gd" type="Script" id=1]
 [ext_resource path="res://world/rooms/room.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/World/small_door_animation.png" type="Texture" id=12]
 [ext_resource path="res://enemies/EvilWizardboss/cutscene/Evilwizardboss_cutscene.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scene's/scene_room1.gd" type="Script" id=14]
+[ext_resource path="res://general purpose/weather_particles.tscn" type="PackedScene" id=15]
 
 [sub_resource type="TileSet" id=47]
 2/name = "Tilesetv3.png 2"
@@ -992,21 +993,23 @@ tile_data = PoolIntArray( 1572950, 18, 0, 1572966, 19, 0, 1638481, 16, 0, 170404
 
 [node name="torch" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 64, 149 )
-frame = 0
+frame = 2
 
 [node name="torch2" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 225, 149 )
-frame = 2
+frame = 0
 
 [node name="torch3" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 401, 166 )
+frame = 3
 
 [node name="torch4" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 577, 181 )
-frame = 0
+frame = 2
 
 [node name="torch5" parent="Background" instance=ExtResource( 7 )]
 position = Vector2( 736, 182 )
+frame = 3
 
 [node name="Door" type="Sprite" parent="."]
 position = Vector2( -170, 216 )
@@ -1156,6 +1159,13 @@ z_index = -1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scene/trigger"]
 position = Vector2( 688, 151 )
 shape = SubResource( 57 )
+
+[node name="weather_particles" parent="." instance=ExtResource( 15 )]
+position = Vector2( 171, 51 )
+weather = "snow"
+width = 30
+amount = 50
+time = 2.0
 
 [connection signal="body_entered" from="Deaths/fall1" to="Deaths" method="_on_area2d_body_entered" binds= [ "fall1" ]]
 [connection signal="body_entered" from="nextrooms/room2" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room2" ]]

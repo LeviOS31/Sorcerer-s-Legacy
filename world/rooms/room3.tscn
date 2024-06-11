@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://world/rooms/room.gd" type="Script" id=1]
 [ext_resource path="res://world/Deaths.gd" type="Script" id=2]
@@ -22,7 +22,7 @@
 [ext_resource path="res://Assets/World/tinyitems/meatwithbone.png" type="Texture" id=20]
 [ext_resource path="res://Assets/World/tinyitems/potato.png" type="Texture" id=21]
 [ext_resource path="res://enemies/minotaur/Minotaur.tscn" type="PackedScene" id=22]
-[ext_resource path="res://enemies/minotaur/charge_trigger.gd" type="Script" id=23]
+[ext_resource path="res://general purpose/weather_particles.tscn" type="PackedScene" id=23]
 
 [sub_resource type="TileSet" id=97]
 2/name = "Tilesetv3.png 2"
@@ -1179,9 +1179,6 @@ extents = Vector2( 22, 42.5 )
 [sub_resource type="RectangleShape2D" id=110]
 extents = Vector2( 4, 65.5 )
 
-[sub_resource type="RectangleShape2D" id=124]
-extents = Vector2( 10, 19.5 )
-
 [node name="room3" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -1208,6 +1205,7 @@ tile_data = PoolIntArray( 589833, 4, 0, 589834, 4, 1, 589835, 4, 1, 589836, 4, 1
 
 [node name="torch" parent="Background" instance=ExtResource( 10 )]
 position = Vector2( 189, 116 )
+frame = 2
 
 [node name="Xtraitems" type="TileMap" parent="Background"]
 tile_set = SubResource( 109 )
@@ -1331,7 +1329,7 @@ tile_data = PoolIntArray( 1703969, 536870914, 0, 1703973, 21, 0, 1703977, 21, 0,
 [node name="chandelier" type="AnimatedSprite" parent="Background"]
 position = Vector2( 336, 107 )
 frames = SubResource( 114 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier" instance=ExtResource( 9 )]
@@ -1341,7 +1339,7 @@ color = Color( 1, 0.85098, 0.658824, 1 )
 [node name="chandelier2" type="AnimatedSprite" parent="Background"]
 position = Vector2( 464, 107 )
 frames = SubResource( 114 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier2" instance=ExtResource( 9 )]
@@ -1351,6 +1349,7 @@ color = Color( 1, 0.85098, 0.658824, 1 )
 [node name="chandelier3" type="AnimatedSprite" parent="Background"]
 position = Vector2( 592, 107 )
 frames = SubResource( 114 )
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier3" instance=ExtResource( 9 )]
@@ -1366,7 +1365,7 @@ tile_data = PoolIntArray( -589830, 0, 0, -589829, 0, 1, -589828, 0, 1, -589827, 
 
 [node name="enemies" type="Node2D" parent="."]
 
-[node name="Slime" parent="enemies" groups=["room"] instance=ExtResource( 8 )]
+[node name="Slime" parent="enemies" instance=ExtResource( 8 )]
 position = Vector2( 211, 148 )
 
 [node name="Minotaur" parent="enemies" instance=ExtResource( 22 )]
@@ -1466,18 +1465,16 @@ position = Vector2( -15, 0 )
 position = Vector2( 771.5, 160.5 )
 shape = SubResource( 110 )
 
-[node name="charge_trigger" type="Area2D" parent="."]
-script = ExtResource( 23 )
-minotaur = NodePath("../enemies/Minotaur")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="charge_trigger"]
-position = Vector2( 275, 220.5 )
-shape = SubResource( 124 )
+[node name="weather_particles" parent="." instance=ExtResource( 23 )]
+position = Vector2( 1013, -89 )
+weather = "snow"
+width = 250
+amount = 300
+time = 5.0
 
 [connection signal="body_entered" from="nextrooms/room2" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room2" ]]
 [connection signal="body_entered" from="nextrooms/roomoutside1" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "roomoutside1" ]]
 [connection signal="body_entered" from="transition/transition_outside" to="transition" method="_on_transition_outside_body_entered"]
 [connection signal="body_entered" from="transition/transition_inside" to="transition" method="_on_transition_inside_body_entered"]
-[connection signal="body_entered" from="charge_trigger" to="charge_trigger" method="_on_charge_trigger_body_entered"]
 
 [editable path="Background/torch"]

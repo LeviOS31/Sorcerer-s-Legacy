@@ -4,6 +4,7 @@ enum{
 	IDLE
 	ATTACK
 	CHARGE
+	CONCUSSED
 }
 
 export (int) var health = 4
@@ -21,8 +22,9 @@ onready var direction = Vector2.LEFT
 onready var animation = $AnimationPlayer
 onready var sprite = $Sprite
 onready var hit = false
-onready var death = false
+onready var died = false
 onready var is_attacking = false
+onready var charge_hitbox = $Sprite/hitbox/CollisionShape2D
 var player
 var previous_direction = null
 
@@ -36,30 +38,21 @@ func _process(delta):
 
 func _physics_process(delta):
 	if !Global.is_in_dialogue:
-		if !hit && ! death:
+		if !hit && !died:
 			match state:
 				IDLE:
-					previous_direction = null
 					velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
 					animation.play("idle")
 				ATTACK:
-					previous_direction = null
 					pass
 				CHARGE:
-					var direction = Vector2.ZERO
-					
-					if player.global_position.x > global_position.x:
-						direction = Vector2.RIGHT
-					else:
-						direction = Vector2.LEFT
-						
 					animation.play("run")
-					print(direction)
-					if direction == previous_direction || previous_direction == null:
-						velocity = velocity.move_toward(direction * chargespeed, chargeACCL * delta)
-						previous_direction = direction
-					else:
-						state = IDLE
+					velocity = velocity.move_toward(direction * chargespeed, chargeACCL * delta)
+					charge_hitbox.disabled = false
+				CONCUSSED:
+					velocity = Vector2.ZERO
+					animation.play("concussed")
+					
 			velocity.y += Gravity
 			velocity = move_and_slide(velocity)
 			if velocity.x != 0:
@@ -72,15 +65,15 @@ func _physics_process(delta):
 		animation.play("idle")
 
 func _on_hurtbox_hit(enemy):
-	if !death:
+	if !died:
 		animation.play("hit")
 		hit = true
 		var knockbackdirection = (global_position - enemy.global_position).normalized()
 		velocity = velocity + (knockbackdirection * Global.knockbackspeed / 2)
 
 func death():
-	if !death:
-		death = true
+	if !died:
+		died = true
 		#pause_mode = Node.PAUSE_MODE_STOP
 		animation.play("death")
 		yield(animation, "animation_finished")
@@ -89,5 +82,20 @@ func death():
 
 func Charge():
 	player = get_tree().get_nodes_in_group("player")[0]
+	if player.global_position.x > global_position.x:
+		direction = Vector2.RIGHT
+	else:
+		direction = Vector2.LEFT
 	state = CHARGE
 	
+
+
+func _on_chargestop_body_entered(body):
+	if body.name != "player":
+		charge_hitbox.disabled = true
+		state = CONCUSSED
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "concussed":
+		state = ATTACK
