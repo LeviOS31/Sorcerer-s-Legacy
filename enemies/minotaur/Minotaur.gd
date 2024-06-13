@@ -44,7 +44,16 @@ func _physics_process(delta):
 					velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
 					animation.play("idle")
 				ATTACK:
-					pass
+					if !is_attacking:
+						var distance = global_position.distance_to(player.global_position)
+						if distance <= 34:
+							velocity = velocity.move_toward(Vector2.ZERO, Friction * delta)
+							Attack()
+						elif distance > 150:
+							state = IDLE
+						else:
+							animation.play("run")
+							velocity = velocity.move_toward(direction * speed, ACCL * delta)
 				CHARGE:
 					animation.play("run")
 					velocity = velocity.move_toward(direction * chargespeed, chargeACCL * delta)
@@ -63,6 +72,13 @@ func _physics_process(delta):
 	else:
 		velocity = move_and_slide(Vector2.ZERO)
 		animation.play("idle")
+		
+func Attack():
+	is_attacking = true
+	animation.play("attack")
+	yield(animation, "animation_finished")
+	is_attacking = false
+	
 
 func _on_hurtbox_hit(enemy):
 	if !died:
@@ -78,7 +94,6 @@ func death():
 		animation.play("death")
 		yield(animation, "animation_finished")
 		queue_free()
-	
 
 func Charge():
 	player = get_tree().get_nodes_in_group("player")[0]
@@ -87,13 +102,16 @@ func Charge():
 	else:
 		direction = Vector2.LEFT
 	state = CHARGE
-	
 
 
 func _on_chargestop_body_entered(body):
-	if body.name != "player":
+	print(body.name)
+	if body.name == "TileMap":
 		charge_hitbox.disabled = true
 		state = CONCUSSED
+	else:
+		charge_hitbox.disabled = true
+		state = ATTACK
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

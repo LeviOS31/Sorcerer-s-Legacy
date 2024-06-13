@@ -1436,7 +1436,7 @@ tile_data = PoolIntArray( 1703969, 536870914, 0, 1703973, 21, 0, 1703977, 21, 0,
 [node name="chandelier" type="AnimatedSprite" parent="Background"]
 position = Vector2( 336, 107 )
 frames = SubResource( 114 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier" instance=ExtResource( 9 )]
@@ -1446,7 +1446,7 @@ color = Color( 1, 0.85098, 0.658824, 1 )
 [node name="chandelier2" type="AnimatedSprite" parent="Background"]
 position = Vector2( 464, 107 )
 frames = SubResource( 114 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier2" instance=ExtResource( 9 )]
@@ -1456,6 +1456,7 @@ color = Color( 1, 0.85098, 0.658824, 1 )
 [node name="chandelier3" type="AnimatedSprite" parent="Background"]
 position = Vector2( 592, 107 )
 frames = SubResource( 114 )
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier3" instance=ExtResource( 9 )]
