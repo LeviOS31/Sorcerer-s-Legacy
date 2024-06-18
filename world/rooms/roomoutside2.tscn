@@ -1512,22 +1512,21 @@ color = Color( 1, 0.188235, 0.188235, 1 )
 
 [node name="torch" parent="Background/lights" instance=ExtResource( 11 )]
 position = Vector2( 112, 214 )
-frame = 3
 
 [node name="torch2" parent="Background/lights" instance=ExtResource( 11 )]
 position = Vector2( 337, 214 )
-frame = 3
 
 [node name="torch3" parent="Background/lights" instance=ExtResource( 11 )]
 position = Vector2( 596, 222 )
 rotation = 1.20385
 z_index = 0
-frame = 2
+frame = 0
 
 [node name="torch4" parent="Background/lights" instance=ExtResource( 11 )]
 position = Vector2( 786, 250 )
 rotation = -0.208932
 z_index = 0
+frame = 3
 
 [node name="cloud" type="StaticBody2D" parent="Background"]
 position = Vector2( 0, -10 )

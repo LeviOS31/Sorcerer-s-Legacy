@@ -10,6 +10,7 @@ var instance
 ### CUTSCENE'S ###
 var cutscene_1_seen = false
 var cutscene_2_seen = false
+var cutscene_3_seen = false
 
 func _ready():
 	actionable_objects = get_tree().get_nodes_in_group("action")
