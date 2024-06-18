@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://world/rooms/room1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Assets/Background/sky.png" type="Texture" id=12]
 [ext_resource path="res://world/rooms/room3.tscn" type="PackedScene" id=13]
 [ext_resource path="res://world/rooms/roomoutside1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://world/rooms/roomoutside2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://world/rooms/roomoutside3.tscn" type="PackedScene" id=16]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -153,6 +155,9 @@ player = NodePath("player")
 [node name="player" parent="." groups=["player"] instance=ExtResource( 2 )]
 position = Vector2( -102, 238 )
 
+[node name="playersprite" parent="player" index="0"]
+frame = 3
+
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
 
@@ -172,11 +177,17 @@ script = ExtResource( 10 )
 [node name="room2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1629, -20 )
 
-[node name="room3" parent="." groups=["room"] instance=ExtResource( 13 )]
+[node name="room3" parent="." instance=ExtResource( 13 )]
 position = Vector2( 3335, -196 )
 
 [node name="roomoutside1" parent="." instance=ExtResource( 14 )]
 position = Vector2( 4984, -20 )
+
+[node name="roomoutside2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 7106, -53 )
+
+[node name="roomoutside3" parent="." instance=ExtResource( 16 )]
+position = Vector2( 8196, -101 )
 
 [node name="room4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2461, 511 )
@@ -268,6 +279,20 @@ margin_left = 4643.0
 margin_top = -289.0
 margin_right = 4907.0
 margin_bottom = 517.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="ColorRect7" type="ColorRect" parent="hider"]
+margin_left = 6925.0
+margin_top = -233.0
+margin_right = 7107.0
+margin_bottom = 573.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="ColorRect8" type="ColorRect" parent="hider"]
+margin_left = 8049.0
+margin_top = -215.0
+margin_right = 8202.0
+margin_bottom = 591.0
 color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 
 [editable path="player"]

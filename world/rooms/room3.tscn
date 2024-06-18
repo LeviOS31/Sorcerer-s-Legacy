@@ -1287,7 +1287,7 @@ extents = Vector2( 22, 42.5 )
 [sub_resource type="RectangleShape2D" id=110]
 extents = Vector2( 4, 65.5 )
 
-[node name="room3" type="Node2D"]
+[node name="room3" type="Node2D" groups=["room"]]
 script = ExtResource( 1 )
 
 [node name="Background" type="Node2D" parent="."]
@@ -1436,7 +1436,7 @@ tile_data = PoolIntArray( 1703969, 536870914, 0, 1703973, 21, 0, 1703977, 21, 0,
 [node name="chandelier" type="AnimatedSprite" parent="Background"]
 position = Vector2( 336, 107 )
 frames = SubResource( 114 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier" instance=ExtResource( 9 )]
@@ -1446,7 +1446,7 @@ color = Color( 1, 0.85098, 0.658824, 1 )
 [node name="chandelier2" type="AnimatedSprite" parent="Background"]
 position = Vector2( 464, 107 )
 frames = SubResource( 114 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier2" instance=ExtResource( 9 )]
@@ -1456,7 +1456,6 @@ color = Color( 1, 0.85098, 0.658824, 1 )
 [node name="chandelier3" type="AnimatedSprite" parent="Background"]
 position = Vector2( 592, 107 )
 frames = SubResource( 114 )
-frame = 1
 playing = true
 
 [node name="Lightsource" parent="Background/chandelier3" instance=ExtResource( 9 )]
@@ -1576,7 +1575,7 @@ shape = SubResource( 110 )
 position = Vector2( 1013, -89 )
 weather = "snow"
 width = 250
-amount = 300
+amount = 400
 time = 5.0
 
 [connection signal="body_entered" from="nextrooms/room2" to="nextrooms" method="_on_nextroom_body_entered" binds= [ "room2" ]]

@@ -14,6 +14,7 @@ func _ready():
 	var particlematerial = get_node(weather).process_material
 	get_node(weather).process_material = ParticlesMaterial.new()
 	get_node(weather).process_material.emission_shape = particlematerial.emission_shape 
+	get_node(weather).process_material.gravity =  particlematerial.gravity
 	get_node(weather).process_material.emission_box_extents.x = width
 	get_node(weather).process_material.scale = particlematerial.scale
 	get_node(weather).process_material.gravity = particlematerial.gravity
