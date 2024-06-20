@@ -1590,6 +1590,7 @@ format = 1
 
 [node name="torch" parent="Background/lights" instance=ExtResource( 4 )]
 position = Vector2( 112, 214 )
+frame = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 188 )

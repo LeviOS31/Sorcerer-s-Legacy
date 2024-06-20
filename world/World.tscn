@@ -156,7 +156,7 @@ player = NodePath("player")
 position = Vector2( -102, 238 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 3
+frame = 4
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
@@ -197,6 +197,15 @@ position = Vector2( 1278, 735 )
 
 [node name="room7" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3539, 639 )
+
+[node name="torch" parent="room7/Background" index="3"]
+frame = 1
+
+[node name="torch2" parent="room7/Background" index="5"]
+frame = 3
+
+[node name="Fearther" parent="room7/Background/altar" index="2"]
+frame = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvas"]]
 
@@ -298,3 +307,13 @@ color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
 [editable path="player"]
 [editable path="player/playersprite/hitbox"]
 [editable path="player/playersprite/hurtbox"]
+[editable path="room7"]
+[editable path="room7/platforms/platform"]
+[editable path="room7/platforms/platform2"]
+[editable path="room7/platforms/platform3"]
+[editable path="room7/platforms/platform4"]
+[editable path="room7/enemies/crystal_mauler"]
+[editable path="room7/enemies/crystal_mauler/CrystalMauler/attack_1/hitbox"]
+[editable path="room7/enemies/crystal_mauler/CrystalMauler/attack_2/hitbox"]
+[editable path="room7/enemies/crystal_mauler/hitbox"]
+[editable path="room7/enemies/crystal_mauler/hurtbox"]

@@ -108,7 +108,7 @@ func Attack():
 			animator.play("attacktop")
 		else:
 			if rand_range(100,0) > 80:
-				animator.play("attack")
+				animator.play("attacktop")
 				print("attack high random")
 			else:
 				print("attack low")
