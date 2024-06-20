@@ -1267,7 +1267,6 @@ shape = SubResource( 494 )
 position = Vector2( 46, 231.544 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 511 )
-frame = 6
 playing = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Background/altar/Fearther"]

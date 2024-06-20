@@ -205,7 +205,7 @@ frame = 0
 frame = 2
 
 [node name="Fearther" parent="room7/Background/altar" index="2"]
-frame = 6
+frame = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvas"]]
 

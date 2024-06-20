@@ -4,7 +4,7 @@ var Dialogue_resource = preload("res://Dialogue/second_boss_fight_start.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$"../enemies/crystal_mauler".connect("death", self, "bossdeath")
+	$"../enemies/Ice_queen".connect("death", self, "bossdeath")
 
 func _on_Trigger_body_entered(body):
 	if body.name == "player" && !Global.cutscene_3_seen:

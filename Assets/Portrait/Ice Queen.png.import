@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Ice Queen.png-c6254606bd64d826bce0b9f5e1a05374.stex"
+path="res://.import/Ice Queen.png-73d6ef26383f2141c62981964721db0f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Elementals_water_priestess/Elementals_water_priestess_FREE_v1.1/Ice Queen.png"
-dest_files=[ "res://.import/Ice Queen.png-c6254606bd64d826bce0b9f5e1a05374.stex" ]
+source_file="res://Assets/Portrait/Ice Queen.png"
+dest_files=[ "res://.import/Ice Queen.png-73d6ef26383f2141c62981964721db0f.stex" ]
 
 [params]
 

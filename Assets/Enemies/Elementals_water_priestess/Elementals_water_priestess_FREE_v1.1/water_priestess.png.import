@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/water_priestess.png-784c9c1e7c5cf3edd83459df4ef30fb7.stex"
+path="res://.import/water_priestess.png-ea73a5731e20cd1dccfeaa1d5315f4c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Portrait/water_priestess.png"
-dest_files=[ "res://.import/water_priestess.png-784c9c1e7c5cf3edd83459df4ef30fb7.stex" ]
+source_file="res://Assets/Enemies/Elementals_water_priestess/Elementals_water_priestess_FREE_v1.1/water_priestess.png"
+dest_files=[ "res://.import/water_priestess.png-ea73a5731e20cd1dccfeaa1d5315f4c9.stex" ]
 
 [params]
 

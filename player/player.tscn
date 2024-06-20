@@ -301,7 +301,7 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 2
+frame = 1
 
 [node name="Particles2D" type="Particles2D" parent="playersprite"]
 position = Vector2( 22, 6 )
@@ -312,6 +312,7 @@ process_material = SubResource( 115 )
 texture = ExtResource( 5 )
 
 [node name="hitbox" parent="playersprite" instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 1, 0 )
 collision_layer = 16384
 damage = 1
@@ -325,6 +326,7 @@ shape = SubResource( 111 )
 disabled = true
 
 [node name="hurtbox" parent="playersprite" instance=ExtResource( 3 )]
+visible = false
 parent = NodePath("../..")
 
 [node name="CollisionShape2D" parent="playersprite/hurtbox" index="0"]
@@ -345,6 +347,7 @@ strength = 0.0
 position = Vector2( -1, -3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 1, -0.5 )
 shape = SubResource( 110 )
 

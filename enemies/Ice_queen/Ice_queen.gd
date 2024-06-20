@@ -41,11 +41,34 @@ func move(delta):
 				match State:
 					IDLE:
 						velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-						if abs(global_position.x - player.global_position.x) > 100 || abs(global_position.x - player.global_position.x) < 50:
+						if abs(global_position.x - player.global_position.x) > 85 || abs(global_position.x - player.global_position.x) < 20:
 							State = MOVE
 						elif !recharge:
 							Attack()
 							return
+					MOVE:
+						var direction = 0
+						if abs(global_position.x - player.global_position.x) > 85:
+							direction = clamp(player.global_position.x - global_position.x, -1, 1)
+						elif abs(global_position.x - player.global_position.x) < 20:
+							direction = clamp(player.global_position.x - global_position.x, -1, 1)
+							direction = -direction
+						velocity = velocity.move_toward(Vector2(direction, 1) * Speed, Accl * delta)
+						
+						if abs(global_position.x - player.global_position.x) < 85 && abs(global_position.x - player.global_position.x) > 20:
+							State = IDLE
+
+				velocity = move_and_slide(velocity)
+				if animator.current_animation != "hit" || !is_attacking:
+					if velocity.x != 0 :
+						animator.play("run")
+					else:
+						animator.play("idle")
+					
+				if (player.global_position - global_position).normalized().x > 0:
+					sprite.scale = Vector2(1,1)
+				else:
+					sprite.scale = Vector2(-1,1)
 
 func death():
 	died = true
@@ -81,7 +104,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_hurtbox_hit(enemy):
 	if !died:
-		#animator.play("RESET")
+		animator.play("RESET")
 		is_attacking = false
 		animator.play("hit")
 		print(enemy.global_position)
