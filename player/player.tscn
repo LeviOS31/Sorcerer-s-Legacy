@@ -301,7 +301,7 @@ script = ExtResource( 2 )
 position = Vector2( 1, -9 )
 texture = ExtResource( 1 )
 hframes = 57
-frame = 5
+frame = 2
 
 [node name="Particles2D" type="Particles2D" parent="playersprite"]
 position = Vector2( 22, 6 )
@@ -372,6 +372,8 @@ parameters/playback = SubResource( 81 )
 
 [node name="Position2D" parent="." instance=ExtResource( 6 )]
 color = Color( 1, 0.85098, 0.658824, 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="hit" from="playersprite/hurtbox" to="." method="_on_hurtbox_hit"]
 

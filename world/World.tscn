@@ -156,7 +156,7 @@ player = NodePath("player")
 position = Vector2( -102, 238 )
 
 [node name="playersprite" parent="player" index="0"]
-frame = 4
+frame = 3
 
 [node name="AnimationTree" parent="player" index="3"]
 parameters/playback = SubResource( 1 )
@@ -199,10 +199,10 @@ position = Vector2( 1278, 735 )
 position = Vector2( 3539, 639 )
 
 [node name="torch" parent="room7/Background" index="3"]
-frame = 1
+frame = 0
 
 [node name="torch2" parent="room7/Background" index="5"]
-frame = 3
+frame = 2
 
 [node name="Fearther" parent="room7/Background/altar" index="2"]
 frame = 6

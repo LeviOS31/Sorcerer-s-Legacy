@@ -1,0 +1,116 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogue_manager/dialogue_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+resource_version = 18
+syntax_version = 2
+raw_text = "~ second_boss_fight_start
+set is_in_dialogue = true
+do playscene(\"gate_close\")
+do wait(0.6)
+Ice Queen: The cold is unforgiving, and so am I. Step forward, if you wish to meet your end.
+set cutscene_3_seen = true
+set is_in_dialogue = false
+=> END"
+errors = [  ]
+titles = {
+"second_boss_fight_start": "1"
+}
+lines = {
+"0": {
+"next_id": "1",
+"text": "second_boss_fight_start",
+"type": "title"
+},
+"1": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "is_in_dialogue"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "2",
+"type": "mutation"
+},
+"2": {
+"mutation": {
+"expression": [ {
+"function": "playscene",
+"type": "function",
+"value": [ [ {
+"type": "string",
+"value": "gate_close"
+} ] ]
+} ]
+},
+"next_id": "3",
+"type": "mutation"
+},
+"3": {
+"mutation": {
+"expression": [ {
+"function": "wait",
+"type": "function",
+"value": [ [ {
+"type": "number",
+"value": 0.6
+} ] ]
+} ]
+},
+"next_id": "4",
+"type": "mutation"
+},
+"4": {
+"character": "Ice Queen",
+"character_replacements": [  ],
+"next_id": "5",
+"replacements": [  ],
+"text": "The cold is unforgiving, and so am I. Step forward, if you wish to meet your end.",
+"translation_key": "The cold is unforgiving, and so am I. Step forward, if you wish to meet your end.",
+"type": "dialogue"
+},
+"5": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "cutscene_3_seen"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": true
+} ]
+},
+"next_id": "6",
+"type": "mutation"
+},
+"6": {
+"mutation": {
+"expression": [ {
+"type": "variable",
+"value": "is_in_dialogue"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "bool",
+"value": false
+} ]
+},
+"next_id": "7",
+"type": "mutation"
+},
+"7": {
+"next_id": "end",
+"type": "goto"
+}
+}

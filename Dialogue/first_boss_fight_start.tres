@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-resource_version = 15
+resource_version = 16
 syntax_version = 2
 raw_text = "~ first_boss_fight_start
 set is_in_dialogue = true
@@ -13,7 +13,7 @@ do wait(0.6)
 Crystal mauler: Welkom[do wait(0.4)].[do wait(0.4)].[do wait(0.4)].
 
 Crystal mauler: TO YOUR DOOM
-set cutscene_2_seen = true
+set cutscene_3_seen = true
 set is_in_dialogue = false
 => END"
 errors = [  ]
@@ -92,7 +92,7 @@ lines = {
 "mutation": {
 "expression": [ {
 "type": "variable",
-"value": "cutscene_2_seen"
+"value": "cutscene_3_seen"
 }, {
 "type": "assignment",
 "value": "="

@@ -1241,7 +1241,6 @@ format = 1
 
 [node name="torch" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 73, 51 )
-frame = 2
 
 [node name="items" type="TileMap" parent="Background"]
 tile_set = SubResource( 124 )
@@ -1250,7 +1249,7 @@ format = 1
 
 [node name="torch2" parent="Background" instance=ExtResource( 4 )]
 position = Vector2( 167, 161 )
-frame = 0
+frame = 3
 
 [node name="altar" type="Area2D" parent="Background" groups=["action"]]
 position = Vector2( 893, -1 )
@@ -1268,6 +1267,7 @@ shape = SubResource( 494 )
 position = Vector2( 46, 231.544 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 511 )
+frame = 6
 playing = true
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Background/altar/Fearther"]
@@ -1396,6 +1396,7 @@ anims/finish = SubResource( 499 )
 anims/gate_close = SubResource( 500 )
 
 [node name="gate" type="StaticBody2D" parent="scene"]
+position = Vector2( 0, 45 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scene/gate"]
 position = Vector2( 248, 184 )
