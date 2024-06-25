@@ -39,12 +39,13 @@ func update_target_position():
 	raycast.force_raycast_update()
 
 	if raycast.is_colliding():
-		print(raycast.get_collision_point())
+		#print(raycast.get_collision_point())
 		var collision_point = raycast.get_collision_point()
 		target.translation.x = collision_point.x
 		target.translation.y = collision_point.y
 		target.translation.z = $"../../arrowshootstart/hollow beam".translation.z
 		target.visible = true
+		Global.target = target.translation
 	else:
 		target.visible = false
 	

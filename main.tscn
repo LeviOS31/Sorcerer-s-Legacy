@@ -10,6 +10,7 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="cameramover" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07351, 2.91452, 3.71563 )
 script = ExtResource( 2 )
 speed = 10
 
@@ -32,10 +33,15 @@ __meta__ = {
 }
 
 [node name="arrowshootstart" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88044, 0, -2.51708 )
 script = ExtResource( 6 )
 
 [node name="hollow beam" parent="arrowshootstart" instance=ExtResource( 4 )]
-transform = Transform( -1.67766e-08, 0.112669, 1.91902, 4.9249e-09, 0.383804, -0.563343, -0.4, 0, -8.74228e-08, 6.1262, 0.174073, -0.724664 )
+transform = Transform( -1.67766e-08, 0.112669, 1.91902, 4.9249e-09, 0.383804, -0.563343, -0.4, 0, -8.74228e-08, 0, 0, 0 )
+visible = false
 
 [node name="arrow" parent="arrowshootstart" instance=ExtResource( 3 )]
-transform = Transform( -0.383804, 0.112669, 6.03983e-08, 0.112669, 0.383804, 0, -5.79528e-08, 1.70125e-08, -0.4, 6.18946, 0.126429, -0.72997 )
+transform = Transform( -0.383804, 0.112669, 6.03983e-08, 0.112669, 0.383804, 0, -5.79528e-08, 1.70125e-08, -0.4, 0, 0, 0 )
+visible = false
+
+[node name="RigidBody" type="RigidBody" parent="."]
