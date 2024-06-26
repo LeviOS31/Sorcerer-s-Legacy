@@ -13,8 +13,8 @@ func _ready():
 	velocity = startvelocity
 
 func fire(launchspeed, launchangle):
-	rotation.z = -1 * launchangle
-	velocity = global_transform.basis * Vector3((2 * launchspeed),0,0)
+	rotation_degrees.z = -1 * launchangle
+	velocity = global_transform.basis * Vector3((-2 * launchspeed),0,0)
 	fired = true
 
 func _process(delta):
@@ -27,15 +27,15 @@ func _process(delta):
 			
 			# Preserve current X and Y rotation
 			var current_basis = global_transform.basis
-			var current_x_axis = current_basis.x.normalized()
+			var current_z_axis = current_basis.z.normalized()
 			var current_y_axis = current_basis.y.normalized()
 			
 			# Calculate new Z axis (direction of velocity)
-			var new_z_axis = direction
+			var new_x_axis = direction
 			
 			# Ensure x and y axes are perpendicular to the new z axis
-			var new_x_axis = new_z_axis.cross(current_y_axis).normalized()
-			var new_y_axis = new_x_axis.cross(new_z_axis).normalized()
+			var new_z_axis = new_x_axis.cross(current_y_axis).normalized()
+			var new_y_axis = new_z_axis.cross(new_x_axis).normalized()
 			
 			# Create a new basis with preserved X and Y rotation and updated Z rotation
 			var new_basis = Basis(new_x_axis, new_y_axis, new_z_axis)
